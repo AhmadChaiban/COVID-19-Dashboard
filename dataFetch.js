@@ -1,7 +1,7 @@
 var fs = require('fs');
 const fetch = require("node-fetch");
 const neatCsv = require('neat-csv');
-var data_final = 'ID\tname\tconfirmed\trecovered\tdeaths\tactive\t';
+var data_final = 'id\tname\tconfirmed\trecovered\tdeaths\tactive\t';
 
 // fetch("https://pomber.github.io/covid19/timeseries.json")
 //   .then(response => response.json())

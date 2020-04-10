@@ -7,7 +7,7 @@ function heatMap(){
                 .attr('class', 'd3-tip')
                 .offset([-10, 0])
                 .html(function(d) {
-                return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Population: </strong><span class='details'>" + format(d.population) +"</span>";
+                return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Population: </strong><span class='details'>" + format(d.confirmed) +"</span>";
                 })
 
     var margin = {top: 0, right: 0, bottom: 0, left: 0},
@@ -37,14 +37,14 @@ function heatMap(){
 
     queue()
         .defer(d3.json, "world_countries.json")
-        .defer(d3.tsv, "world_population.tsv")
+        .defer(d3.tsv, "world_covid.tsv")
         .await(ready);
 
     function ready(error, data, population) {
     var populationById = {};
 
-    population.forEach(function(d) { populationById[d.id] = +d.population; });
-    data.features.forEach(function(d) { d.population = populationById[d.id] });
+    population.forEach(function(d) { populationById[d.id] = +d.confirmed; });
+    data.features.forEach(function(d) { d.confirmed = populationById[d.id] });
 
     svg.append("g")
         .attr("class", "countries")
@@ -52,7 +52,7 @@ function heatMap(){
         .data(data.features)
         .enter().append("path")
         .attr("d", path)
-        .style("fill", function(d) { return color(populationById[d.id]); })
+        .style("fill", function(d) { return color(populationById[d.id]*100); })
         .style('stroke', 'white')
         .style('stroke-width', 1.5)
         .style("opacity",0.8)
