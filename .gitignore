@@ -2,3 +2,4 @@
 *.json
 *.tsv
 node_modules
+.ipynb_checkpoints
