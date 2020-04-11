@@ -70,9 +70,3 @@
 .details{
     color:white;
     }
-
-@media only screen and (max-width: 720px) {
-    header {
-        position: absolute;
-    }
-}

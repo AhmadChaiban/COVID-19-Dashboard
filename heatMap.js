@@ -31,21 +31,33 @@ function heatMap(){
     //     .translateExtent([[0,0], [width, height]])
     //     .extent([[0, 0], [width, height]])
     //     .on("zoom", zoommove);
+    
+    // var zoom = d3.zoom()
+    //     .scaleExtent([1, 100])
+    //     .on('zoom', zoomFn);
 
-    var zoom = d3.zoom()
-        .scaleExtent([1, 100])
-        .on('zoom', zoomFn);
+    // Feel free to change or delete any of the code you see in this editor!
+    zoomed = ()=>{
+        const {x,y,k} = d3.event.transform
+        let t = d3.zoomIdentity
+       t =  t.translate(x,y).scale(k).translate(50,50)
+        svg.attr("transform", t)
+      }
+      var zoom = d3.zoom()
+      .scaleExtent([1, 30])
+      .on("zoom", zoomed);
 
     var svg = d3.select("svg")
                 .attr("width", width)
                 .attr("height", height)
                 .append('g')
                 .attr('class', 'map')
-                .call(zoom);
+                .call(zoom)
+                .append("g").attr('transform','translate(50,50)');
               
-    function zoomFn() {
-        d3.select('#divBox').select('svg').select('g').attr('transform', 'translate(' + d3.event.transform.x + ',' + d3.event.transform.y + ')');
-    }
+    // function zoomFn() {
+    //     d3.select('#divBox').select('svg').select('g').attr('transform', 'translate(' + d3.event.transform.x + ',' + d3.event.transform.y + ') scale(' + d3.event.transform.k + ')');
+    // }
 
     var projection = d3.geoMercator()
                     .scale(0.03939*width/1.5 + 0.104166*height+50)
@@ -61,6 +73,15 @@ function heatMap(){
         .await(ready);
 
     function ready(error, data, population) {
+
+    var topology = topojson.topology(data.features);
+    topology = topojson.presimplify(topology);
+
+    var final_data_simplified = []
+    console.log(data.features.length)
+    for(i=0; i<data.features.length;i++){
+        final_data_simplified.push(topojson.feature(topology,topology.objects[i]));
+    }
     var populationById = {};
 
     population.forEach(function(d) { 
@@ -70,7 +91,7 @@ function heatMap(){
         populationById[d.id+2] = +d.deaths;
     
     });
-    data.features.forEach(function(d) { 
+    final_data_simplified.forEach(function(d) { 
         
         d.confirmed = populationById[d.id] 
         d.recovered = populationById[d.id+1]
@@ -81,12 +102,12 @@ function heatMap(){
     svg.append("g")
         .attr("class", "countries")
         .selectAll("path")
-        .data(data.features)
+        .data(final_data_simplified)
         .enter().append("path")
         .attr("d", path)
         .style("fill", function(d) { return color(populationById[d.id]*100); })
         .style('stroke', 'white')
-        .style('stroke-width', 1.5)
+        .style('stroke-width', 0.5)
         .style("opacity",1)
         // tooltips
             .style("stroke","white")
@@ -95,7 +116,7 @@ function heatMap(){
             tip.show(d);
 
             d3.select(this)
-                .style("opacity", 1)
+                .style("opacity", 0.8)
                 .style("stroke","white")
                 .style("stroke-width",3);
             })
@@ -103,13 +124,13 @@ function heatMap(){
             tip.hide(d);
 
             d3.select(this)
-                .style("opacity", 0.8)
+                .style("opacity", 1)
                 .style("stroke","white")
                 .style("stroke-width",0.3);
             });
-
+    
     svg.append("path")
-        .datum(topojson.mesh(data.features, function(a, b) { return a.id !== b.id; }))
+        .datum(topojson.mesh(final_data_simplified, function(a, b) { return a.id !== b.id; }))
         // .datum(topojson.mesh(data.features, function(a, b) { return a !== b; }))
         .attr("class", "names")
         .attr("d", path);
