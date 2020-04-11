@@ -2,20 +2,39 @@
 <html lang="en" style = 'background-color:#3e3e3f !important;'>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.00, minimum-scale=1.00, maximum-scale=2.00">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="heatMap.css">
+    <link rel="stylesheet" href="bootStrap.css>
     <title>Document</title>
 </head>
 <body>
 
-    <div></div>
+    <div class = "container" >
+        <div class = "row">
+            <!-- Column that houses the title is here. Defined as the medium size at the sixth level -->
+            <div class = "col-md-2" style = "width:100%;height:1%">
+                <!-- The acutal title is being defined here through an h1 tag -->
+                <h1 style = "text-align: center; font-family: monospace; font-size: 30px;opacity: 0.7;padding-top: 2%;">COVID-19 Updates</h1>
+            </div>
+        </div>
+        <div class = "row" style = "width:100%;height:30%;">
+            <div class = "col-xl-6" style="border:20px; border-color: white; height:400px" id = "divBox">
+                <svg height =5% width="100%" id = "node">
+                </svg>
+            </div>
+        </div>
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/queue.v1.min.js"></script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="d3-tip.js"></script>
     <script type="text/javascript" src="heatMap.js"></script>
+    <script>
+        window.addEventListener("resize", function(event){
+            heatMap();
+        });
+    </script>
     <!-- <script type="text/javascript" src="dataFetch.js"></script> -->
 </body>
 

@@ -1,5 +1,9 @@
 function heatMap(){
 
+    var svg = d3.selectAll('#node').attr('width',document.getElementById('divBox').offsetWidth);
+        //Using this selection to update the SVG everytime the function is called
+    svg.selectAll("*").remove();
+
     var format = d3.format(",");
 
 // Set tooltips
@@ -7,12 +11,17 @@ function heatMap(){
                 .attr('class', 'd3-tip')
                 .offset([-10, 0])
                 .html(function(d) {
-                return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Population: </strong><span class='details'>" + format(d.confirmed) +"</span>";
+                return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Confirmed: </strong><span class='details'>" + format(d.confirmed) +"<br></span>"
+                + "<strong>Recovered: </strong><span class='details'>" + format(d.recovered) +"<br></span>" + "<strong>Deaths: </strong><span class='details'>" + format(d.deaths) +"<br></span>"
+                + "<strong>Active: </strong><span class='details'>" + format(d.confirmed - d.recovered - d.deaths) +"<br></span>";
                 })
 
-    var margin = {top: 0, right: 0, bottom: 0, left: 0},
-                width = 960 - margin.left - margin.right,
-                height = 500 - margin.top - margin.bottom;
+    var margin = {top: 0, right: 0, bottom: 0, left: 10},
+                width = document.getElementById('divBox').offsetWidth - margin.left - margin.right,
+                height = document.getElementById('divBox').offsetHeight*1.8 - margin.top - margin.bottom;
+
+                console.log(width);
+                console.log(height);
 
     var color = d3.scaleThreshold()
         .domain([10000,100000,500000,1000000,5000000,10000000,50000000,100000000,500000000,1500000000])
@@ -20,16 +29,15 @@ function heatMap(){
 
     var path = d3.geoPath();
 
-    var svg = d3.select("body")
-                .append("svg")
+    var svg = d3.select("svg")
                 .attr("width", width)
                 .attr("height", height)
                 .append('g')
                 .attr('class', 'map');
 
     var projection = d3.geoMercator()
-                    .scale(130)
-                    .translate( [width / 2, height / 1.5]);
+                    .scale(0.03939*width/1.5 + 0.104166*height-20)
+                    .translate( [width / 2, height / 2.1]);
 
     var path = d3.geoPath().projection(projection);
 
@@ -43,8 +51,20 @@ function heatMap(){
     function ready(error, data, population) {
     var populationById = {};
 
-    population.forEach(function(d) { populationById[d.id] = +d.confirmed; });
-    data.features.forEach(function(d) { d.confirmed = populationById[d.id] });
+    population.forEach(function(d) { 
+        
+        populationById[d.id] = +d.confirmed;
+        populationById[d.id+1] = +d.recovered;
+        populationById[d.id+2] = +d.deaths;
+    
+    });
+    data.features.forEach(function(d) { 
+        
+        d.confirmed = populationById[d.id] 
+        d.recovered = populationById[d.id+1]
+        d.deaths = populationById[d.id+2]    
+
+    });
 
     svg.append("g")
         .attr("class", "countries")
@@ -55,7 +75,7 @@ function heatMap(){
         .style("fill", function(d) { return color(populationById[d.id]*100); })
         .style('stroke', 'white')
         .style('stroke-width', 1.5)
-        .style("opacity",0.8)
+        .style("opacity",1)
         // tooltips
             .style("stroke","white")
             .style('stroke-width', 0.3)
@@ -83,5 +103,3 @@ function heatMap(){
         .attr("d", path);
     }
 }
-
-heatMap();
