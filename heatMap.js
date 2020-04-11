@@ -40,15 +40,15 @@ function heatMap(){
                 .attr("width", width)
                 .attr("height", height)
                 .append('g')
-                .attr('class', 'map');
-                // .call(zoom);
+                .attr('class', 'map')
+                .call(zoom);
               
     function zoomFn() {
-        d3.select('#divBox').select('svg').select('g').attr('transform', 'translate(' + d3.event.transform.x + ',' + d3.event.transform.y + ') scale(' + d3.event.transform.k + ')');
+        d3.select('#divBox').select('svg').select('g').attr('transform', 'translate(' + d3.event.transform.x + ',' + d3.event.transform.y + ')');
     }
 
     var projection = d3.geoMercator()
-                    .scale(0.03939*width/1.5 + 0.104166*height-20)
+                    .scale(0.03939*width/1.5 + 0.104166*height+50)
                     .translate( [width / 2, height / 2.1]);
 
     var path = d3.geoPath().projection(projection);

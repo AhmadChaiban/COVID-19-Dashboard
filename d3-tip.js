@@ -187,7 +187,7 @@
       function directionNorth() {
         var bbox = getScreenBBox()
         return {
-          top:  bbox.n.y - node.offsetHeight,
+          top:  bbox.n.y + node.offsetHeight,
           left: bbox.n.x - node.offsetWidth / 2
         }
       }
@@ -203,7 +203,7 @@
       function directionEast() {
         var bbox = getScreenBBox()
         return {
-          top:  bbox.e.y - node.offsetHeight / 2,
+          top:  bbox.e.y + node.offsetHeight / 2,
           left: bbox.e.x
         }
       }
@@ -211,7 +211,7 @@
       function directionWest() {
         var bbox = getScreenBBox()
         return {
-          top:  bbox.w.y - node.offsetHeight / 2,
+          top:  bbox.w.y + node.offsetHeight / 2,
           left: bbox.w.x - node.offsetWidth
         }
       }
@@ -219,7 +219,7 @@
       function directionNorthWest() {
         var bbox = getScreenBBox()
         return {
-          top:  bbox.nw.y - node.offsetHeight,
+          top:  bbox.nw.y + node.offsetHeight,
           left: bbox.nw.x - node.offsetWidth
         }
       }
@@ -227,7 +227,7 @@
       function directionNorthEast() {
         var bbox = getScreenBBox()
         return {
-          top:  bbox.ne.y - node.offsetHeight,
+          top:  bbox.ne.y + node.offsetHeight,
           left: bbox.ne.x
         }
       }
