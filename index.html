@@ -2,7 +2,7 @@
 <html lang="en" style = 'background-color:#3e3e3f !important;'>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.00, minimum-scale=1.00, maximum-scale=2.00">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=300" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="heatMap.css">
     <link rel="stylesheet" href="bootStrap.css>
@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <div class = "container" >
+    <div class = "container" style = "max-zoom: 500%;">
         <div class = "row">
             <!-- Column that houses the title is here. Defined as the medium size at the sixth level -->
             <div class = "col-md-2" style = "width:100%;height:1%">
@@ -31,6 +31,7 @@
     <script src="d3-tip.js"></script>
     <script type="text/javascript" src="heatMap.js"></script>
     <script>
+        heatMap();
         window.addEventListener("resize", function(event){
             heatMap();
         });

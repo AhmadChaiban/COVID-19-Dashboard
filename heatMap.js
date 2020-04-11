@@ -20,20 +20,32 @@ function heatMap(){
                 width = document.getElementById('divBox').offsetWidth - margin.left - margin.right,
                 height = document.getElementById('divBox').offsetHeight*1.8 - margin.top - margin.bottom;
 
-                console.log(width);
-                console.log(height);
-
     var color = d3.scaleThreshold()
         .domain([10000,100000,500000,1000000,5000000,10000000,50000000,100000000,500000000,1500000000])
         .range(["rgb(247,251,255)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]);
 
     var path = d3.geoPath();
 
+    // const zoom = d3.zoom()
+    //     .scaleExtent([1, 40])
+    //     .translateExtent([[0,0], [width, height]])
+    //     .extent([[0, 0], [width, height]])
+    //     .on("zoom", zoommove);
+
+    var zoom = d3.zoom()
+        .scaleExtent([1, 100])
+        .on('zoom', zoomFn);
+
     var svg = d3.select("svg")
                 .attr("width", width)
                 .attr("height", height)
                 .append('g')
                 .attr('class', 'map');
+                // .call(zoom);
+              
+    function zoomFn() {
+        d3.select('#divBox').select('svg').select('g').attr('transform', 'translate(' + d3.event.transform.x + ',' + d3.event.transform.y + ') scale(' + d3.event.transform.k + ')');
+    }
 
     var projection = d3.geoMercator()
                     .scale(0.03939*width/1.5 + 0.104166*height-20)
