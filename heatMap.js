@@ -123,6 +123,14 @@ function heatMap(){
                 .style("stroke","white")
                 .style("stroke-width",3);
             })
+            .on('click',function(d){
+                tip.show(d);
+    
+                d3.select(this)
+                    .style("opacity", 0.8)
+                    .style("stroke","white")
+                    .style("stroke-width",3);
+            })
             .on('mouseout', function(d){
             tip.hide(d);
 
