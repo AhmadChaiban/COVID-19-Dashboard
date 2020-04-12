@@ -50,8 +50,8 @@
       // Returns a tip
       tip.show = function() {
 
-        var x = d3.event.pageX - document.getElementById('node').getBoundingClientRect().x + 20;
-        var y = d3.event.pageY - document.getElementById('node').getBoundingClientRect().y + 20;
+        var x = d3.event.x - 50;
+        var y = d3.event.y+ 10;
         var args = Array.prototype.slice.call(arguments)
         if (args[args.length - 1] instanceof SVGElement) target = args.pop()
   

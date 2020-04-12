@@ -46,7 +46,7 @@ function heatMap(){
        t =  t.translate(x,y).scale(k).translate(50,50)
         svg.attr("transform", t)
       }
-      var zoom = d3.zoom()
+    var zoom = d3.zoom()
       .scaleExtent([1, 30])
       .on("zoom", zoomed);
 
