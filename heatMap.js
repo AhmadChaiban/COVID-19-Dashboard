@@ -19,8 +19,8 @@ function heatMap(){
                 + "<strong>Active: </strong><span class='details'>" + format(d.confirmed - d.recovered - d.deaths) +"<br></span>";
                 })
 
-    var margin = {top: 0, right: 0, bottom: 0, left: 10},
-                width = document.getElementById('divBox').offsetWidth - margin.left - margin.right,
+    var margin = {top: 0, right: 0, bottom: 0, left: 10},s
+                width = document.getElementById('divBox').offsetWidth*1.5 - margin.left - margin.right,
                 height = document.getElementById('divBox').offsetHeight*1.8 - margin.top - margin.bottom;
 
     var color = d3.scaleThreshold()
@@ -50,7 +50,7 @@ function heatMap(){
       .scaleExtent([1, 30])
       .on("zoom", zoomed);
 
-    var svg = d3.select("svg")
+    var svg = d3.select("#node")
                 .attr("width", width)
                 .attr("height", height)
                 .append('g')

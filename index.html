@@ -10,25 +10,19 @@
 </head>
 <body style = 'background-color:#3e3e3f !important;'>
 
-
-    <!-- <div class = 'container'>
-        <div class = "row" style = "width:100%;height:30%;">
-            <div class = "col-xl-6" style="border:20px; border-color: white; height:400px" id = "divBoxRace">
-                <svg height =5% width="100%" id = "worldRace" class = 'zulu'></svg>
-            </div>
-        </div>
-    </div> -->
-
-    <div class = 'container'>
+    <div class = 'container no-gutters'>
         <div class = "row">
             <!-- Column that houses the title is here. Defined as the medium size at the sixth level -->
-            <div class = "col-md-12" style = "width:100%;height:1%">
+            <div class = "col-md-12" style = "width:100%;height:1%; padding-left:25%;">
                 <!-- The acutal title is being defined here through an h1 tag -->
                 <h1 style = "text-align: center; font-family: monospace; font-size: 30px;opacity: 0.7;padding-top: 2%; color: white">COVID-19 Updates</h1>
             </div>
         </div>
-        <div class = "row" style = "width:100%;height:30%;">
-            <div class = "col-xl-12" style="height:400px" id = "divBox">
+        <div class = "row no-gutters" style = "width:100%;height:30%; flex-wrap: wrap">
+            <div class = "col-md-4" style="height:400px; max-width: 30%;" id = "divBoxRace">
+                <svg height ='300px' width="100%" id = "Top6" class = 'zulu'></svg>
+            </div>
+            <div class = "col-lg-8" style="height:400px;width:100%;" id = "divBox">
                 <svg height =5% width="100%" id = "node" class = 'bravo'></svg>
             </div>
         </div>
@@ -41,7 +35,7 @@
     <!-- <script src="topojson-simplify.min.js"></script> -->
     <script src="d3-tip.js"></script>
     <script type="text/javascript" src="heatMap.js"></script>
-    <script type="text/javascript" src="worldRace.js"></script>
+    <script type="text/javascript" src="top_6_worldwide.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
     <script src="https://unpkg.com/topojson@3.0.0/dist/topojson.min.js"></script>
     <script>
