@@ -49,6 +49,9 @@
       //
       // Returns a tip
       tip.show = function() {
+
+        var x = d3.event.pageX - document.getElementById('node').getBoundingClientRect().x + 20;
+        var y = d3.event.pageY - document.getElementById('node').getBoundingClientRect().y + 20;
         var args = Array.prototype.slice.call(arguments)
         if (args[args.length - 1] instanceof SVGElement) target = args.pop()
   
@@ -69,8 +72,13 @@
         while (i--) nodel.classed(directions[i], false)
         coords = directionCallbacks.get(dir).apply(this)
         nodel.classed(dir, true)
-          .style('top', (coords.top + poffset[0]) + scrollTop + 'px')
-          .style('left', (coords.left + poffset[1]) + scrollLeft + 'px')
+          // .style('top', (coords.top + poffset[0]) + scrollTop + 'px')
+          // .style('left', (coords.left + poffset[1]) + scrollLeft + 'px')
+          .style('top', (y + 'px'))
+          .style('left', (x + 'px'));
+
+          console.log(x)
+          console.log(y)
   
         return tip
       }
@@ -187,7 +195,7 @@
       function directionNorth() {
         var bbox = getScreenBBox()
         return {
-          top:  bbox.n.y + node.offsetHeight,
+          top:  bbox.n.y - node.offsetHeight,
           left: bbox.n.x - node.offsetWidth / 2
         }
       }
@@ -203,7 +211,7 @@
       function directionEast() {
         var bbox = getScreenBBox()
         return {
-          top:  bbox.e.y + node.offsetHeight / 2,
+          top:  bbox.e.y - node.offsetHeight / 2,
           left: bbox.e.x
         }
       }
@@ -211,7 +219,7 @@
       function directionWest() {
         var bbox = getScreenBBox()
         return {
-          top:  bbox.w.y + node.offsetHeight / 2,
+          top:  bbox.w.y - node.offsetHeight / 2,
           left: bbox.w.x - node.offsetWidth
         }
       }
@@ -219,7 +227,7 @@
       function directionNorthWest() {
         var bbox = getScreenBBox()
         return {
-          top:  bbox.nw.y + node.offsetHeight,
+          top:  bbox.nw.y - node.offsetHeight,
           left: bbox.nw.x - node.offsetWidth
         }
       }
@@ -227,7 +235,7 @@
       function directionNorthEast() {
         var bbox = getScreenBBox()
         return {
-          top:  bbox.ne.y + node.offsetHeight,
+          top:  bbox.ne.y - node.offsetHeight,
           left: bbox.ne.x
         }
       }

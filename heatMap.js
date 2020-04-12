@@ -4,6 +4,9 @@ function heatMap(){
         //Using this selection to update the SVG everytime the function is called
     svg.selectAll("*").remove();
 
+    removeElementsByClass('d3-tip n');
+    
+
     var format = d3.format(",");
 
 // Set tooltips

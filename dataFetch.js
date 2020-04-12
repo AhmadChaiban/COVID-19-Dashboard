@@ -3,13 +3,13 @@ const fetch = require("node-fetch");
 const neatCsv = require('neat-csv');
 var data_final = 'id\tname\tconfirmed\trecovered\tdeaths\tactive\t';
 
-// fetch("https://pomber.github.io/covid19/timeseries.json")
-//   .then(response => response.json())
-//   .then(data => {
-//     data["Belize"].forEach(({ date, confirmed, recovered, deaths }) =>
-//       console.log(`${date} active cases: ${confirmed - recovered - deaths}`)
-//     );
-//   });
+fetch("https://pomber.github.io/covid19/timeseries.json")
+  .then(response => response.json())
+  .then(data => {
+    data["US"].forEach(({ date, confirmed, recovered, deaths }) =>
+      console.log(`${date} active cases: ${confirmed - recovered - deaths}`)
+    );
+  });
 
 fs.readFile('./country_id_names.tsv', async (err, name_data) => {
     if (err) {
