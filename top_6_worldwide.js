@@ -9,10 +9,14 @@ function sortByProperty(property){
     }  
  }
 
+ function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 
 function top6(){
 
-    var svgRace = d3.selectAll('#Top6').attr('width',document.getElementById('divBoxRace').offsetWidth);
+    var svgRace = d3.selectAll('#Top6').attr('width',document.getElementById('divBoxtopworld_race').offsetWidth);
         //Using this selection to update the SVG everytime the function is called
     svgRace.selectAll("*").remove();
 
@@ -24,7 +28,7 @@ function top6(){
         console.log(sorted_3_second)
 
         var svgRace = d3.selectAll('#Top6')
-                        .attr('height', document.getElementById('divBoxRace').offsetHeight)
+                        .attr('height', document.getElementById('divBoxtopworld_race').offsetHeight/2)
 
         svgRace.append('g')
             .data(['Highest 6 infected (Confirmed)'])
@@ -55,7 +59,7 @@ function top6(){
             .enter()
             .append('text')
             .text(function(d,i){
-                return d['confirmed'];
+                return numberWithCommas(d['confirmed']);
             })
             .style('stroke', 'white')
             .attr('y',80)
@@ -83,7 +87,7 @@ function top6(){
             .enter()
             .append('text')
             .text(function(d,i){
-                return d['confirmed'];
+                return numberWithCommas(d['confirmed']);
             })
             .style('stroke', 'white')
             .attr('y',160)
@@ -94,5 +98,3 @@ function top6(){
     
     });
 }
-
-top6();

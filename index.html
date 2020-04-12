@@ -19,8 +19,9 @@
             </div>
         </div>
         <div class = "row no-gutters" style = "width:100%;height:30%; flex-wrap: wrap">
-            <div class = "col-md-4" style="height:400px; max-width: 30%;" id = "divBoxRace">
-                <svg height ='300px' width="100%" id = "Top6" class = 'zulu'></svg>
+            <div class = "col-md-4" style="height:400px; max-width: 30%;" id = "divBoxtopworld_race">
+                <svg height ='1500px' width="100%" id = "Top6" class = 'zulu'></svg>
+                <svg height ='400px' width="100%" id = "worldRace" class = 'charlie'></svg>
             </div>
             <div class = "col-lg-8" style="height:400px;width:100%;" id = "divBox">
                 <svg height =5% width="100%" id = "node" class = 'bravo'></svg>
@@ -36,6 +37,7 @@
     <script src="d3-tip.js"></script>
     <script type="text/javascript" src="heatMap.js"></script>
     <script type="text/javascript" src="top_6_worldwide.js"></script>
+    <script type="text/javascript" src="worldRace.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
     <script src="https://unpkg.com/topojson@3.0.0/dist/topojson.min.js"></script>
     <script>
@@ -43,8 +45,12 @@
     </script>
     <script>
         heatMap();
+        worldRace();
+        top6();
         window.addEventListener("resize", function(event){
             heatMap();
+            worldRace();
+            top6();
         });
 
         function removeElementsByClass(className){
