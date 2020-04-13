@@ -23,15 +23,15 @@ function worldRace(){
         var aggregation = aggregate(data)
 
         // set the dimensions and margins of the graph
-        var margin = {top: 10, right: 30, bottom: 0, left: 40},
+        var margin = {top: 10, right: 30, bottom: 0, left: 30},
             width = document.getElementById('divBoxtopworld_race').offsetWidth - margin.left - margin.right,
-            height = document.getElementById('divBoxtopworld_race').offsetHeight/1.5 - margin.top - margin.bottom;
+            height = document.getElementById('divBoxtopworld_race').offsetHeight/3 - margin.top - margin.bottom;
 
         // append the svg object to the body of the page
         var svg = d3.select("#worldRace")
             .append("svg")
                 .attr("width", document.getElementById('divBoxtopworld_race').offsetWidth + margin.left + margin.right)
-                .attr("height", document.getElementById('divBoxtopworld_race').offsetHeight*1.5 + margin.top + margin.bottom)
+                .attr("height", document.getElementById('divBoxtopworld_race').offsetHeight*1.2 + margin.top + margin.bottom)
             .append("g")
                 .attr("transform",
                     "translate(" + margin.left + "," + margin.top + ")");
@@ -50,7 +50,7 @@ function worldRace(){
         .selectAll("text")
             .attr("transform", "translate(-10,0)rotate(-45)")
             .style("text-anchor", "end")
-            .style('stroke', 'white')
+            .style('fill', 'white')
             .style('stroke-width',0.5);
 
         console.log(aggregation[0])
@@ -95,19 +95,19 @@ function worldRace(){
             .text(function(d,i){
                 return numberWithCommas(aggregation[i]);
             })
-            .style('stroke','white')
-            .attr('x', function(d,i){ return x(domain_array[i]) + 5})
+            .style('fill','white')
+            .attr('x', function(d,i){ return x(domain_array[i]) + 10})
             .attr('y', function(d,i){ return y(aggregation[i])})
-            .style('font-size', '10px');
+            .style('font-size', '12px');
 
         svg.selectAll('body')
             .data(['text'])
             .enter()
             .append('text')
             .text('COVID-19 Worldwide Race')
-            .attr('x', 35)
-            .attr('y', 325)
-            .style('stroke','white');
+            .attr('x', width/6)
+            .attr('y', 0.01546*height)
+            .style('fill','white');
         
 
     });
