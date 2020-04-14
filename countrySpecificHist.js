@@ -18,6 +18,9 @@ function countrySpecificHist(country){
         for(let i = 0;i < data_entry.length; i++){
         data.push({
             value: data_entry[i].confirmed,
+            value_rec: data_entry[i].recovered,
+            value_active: data_entry[i].active,
+            value_dead: data_entry[i].deaths,
             city: 'test' + i
         })
 
@@ -70,7 +73,7 @@ function countrySpecificHist(country){
         .style('stroke','white')
         .style('stroke-width',1)
         .attr('class', 'xAxis')
-        .style('font-size','11px')
+        .style('font-size','10px')
         .attr('transform', `translate(0, ${height})`)
         .call(
             d3.axisBottom(xScale).tickFormat((d, e) => {
@@ -100,7 +103,69 @@ function countrySpecificHist(country){
                     .attr('width', xBand.bandwidth()*0.9)
                     .attr('height', function(d){
                     return height - yScale(d.value)
+                    });
+
+        
+            let bars2 = svg.append('g')
+                    .attr('clip-path','url(#my-clip-path)')
+                    .selectAll('.bar')
+                    .data(data)
+                    .enter()
+                    .append('rect')
+                    .attr('class', 'bar')
+                    .attr('x', function(d, i){
+                    return xScale(i) - xBand.bandwidth()*0.9/2
                     })
+                    .attr('y', function(d, i){
+                    return yScale(parseInt(d.value_active))
+                    })
+                    .attr('width', xBand.bandwidth()*0.9)
+                    .attr('height', function(d){
+                    return height - yScale(d.value)
+                    })
+                    .style('fill','red')
+                    .style('opacity',0.5)
+
+        let bars3 = svg.append('g')
+            .attr('clip-path','url(#my-clip-path)')
+            .selectAll('.bar')
+            .data(data)
+            .enter()
+            .append('rect')
+            .attr('class', 'bar')
+            .attr('x', function(d, i){
+            return xScale(i) - xBand.bandwidth()*0.9/2
+            })
+            .attr('y', function(d, i){
+            return yScale(parseInt(d.value_rec))
+            })
+            .attr('width', xBand.bandwidth()*0.9)
+            .attr('height', function(d){
+            return height - yScale(d.value)
+            })
+            .style('fill','green')
+            .style('opacity',0.7)
+
+        let bars4 = svg.append('g')
+            .attr('clip-path','url(#my-clip-path)')
+            .selectAll('.bar')
+            .data(data)
+            .enter()
+            .append('rect')
+            .attr('class', 'bar')
+            .attr('x', function(d, i){
+            return xScale(i) - xBand.bandwidth()*0.9/2
+            })
+            .attr('y', function(d, i){
+            return yScale(parseInt(d.value_dead))
+            })
+            .attr('width', xBand.bandwidth()*0.9)
+            .attr('height', function(d){
+            return height - yScale(d.value)
+            })
+            .style('fill','black')
+            .style('opacity',1)
+
 
         let defs = svg.append('defs')
 
@@ -118,6 +183,13 @@ function countrySpecificHist(country){
             }
         })
         }
+
+
+        legend = svg.append("g")
+                .attr("class","legend")
+                .attr("transform","translate(100,100)")
+                .style("font-size","12px")
+                .call(d3.legend)
 
         function zoom() {
             if (d3.event.transform.k < 1) {
@@ -137,6 +209,11 @@ function countrySpecificHist(country){
 
             // the bars transform
             bars.attr("transform", "translate(" + d3.event.transform.x+",0)scale(" + d3.event.transform.k + ",1)")
+            bars2.attr("transform", "translate(" + d3.event.transform.x+",0)scale(" + d3.event.transform.k + ",1)")
+            bars3.attr("transform", "translate(" + d3.event.transform.x+",0)scale(" + d3.event.transform.k + ",1)")
+            bars4.attr("transform", "translate(" + d3.event.transform.x+",0)scale(" + d3.event.transform.k + ",1)")
+
+            
         }
 
     });
