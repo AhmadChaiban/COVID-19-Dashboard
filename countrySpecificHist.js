@@ -184,12 +184,50 @@ function countrySpecificHist(country){
         })
         }
 
+        var columns = ['Confirmed', 'Active', 'Recovered', 'Deaths']
 
-        legend = svg.append("g")
-                .attr("class","legend")
-                .attr("transform","translate(100,100)")
-                .style("font-size","12px")
-                .call(d3.legend)
+        // svg.append('rect')
+        //     .style('stroke','white')
+        //     .style('fill','grey')
+        //     .attr('width', 100)
+        //     .attr('height',100)
+        //     .attr('x', 10)
+        //     .attr('y', 10)
+        //     .attr("transform","translate(100,100)");
+
+        svg.selectAll('#histogramNode')
+            .append('g')
+            .data(columns)
+            .enter()
+            .append('text')
+            .text(function(d,i){
+                return columns[i];
+            })
+            .style('fill','white')
+            .attr('x',100)
+            .attr('y', function(d,i){
+                return 25*i + 30
+            });
+
+        var colors = ['#007bff', 'red', 'green', 'black'];
+        
+        svg.selectAll('#histogramNode')
+            .append('g')
+            .data(colors)
+            .enter()
+            .append('line')
+            .attr('x1', 80)
+            .attr('x2', 60)
+            .attr('y1',function(d,i){
+                return 25*i +27;
+            })
+            .attr('y2',function(d,i){
+                return 25*i +27;
+            })
+            .style('stroke', function(d,i){
+                return colors[i];
+            })
+            .style('stroke-width',2);
 
         function zoom() {
             if (d3.event.transform.k < 1) {
