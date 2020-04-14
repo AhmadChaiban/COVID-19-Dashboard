@@ -1,14 +1,3 @@
-// function getDailyAggregation(data){
-
-//     daily_aggregation = []
-
-//     for(i=0; i<data.length;i++){
-//         for(j=0; j<data[i].length;j++){
-            
-//         }
-//     }
-// }
-
 
 
 function countrySpecificHist(country){
