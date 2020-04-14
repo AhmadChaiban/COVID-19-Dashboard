@@ -16,7 +16,7 @@ function sortByProperty(property){
 
 function top6(){
 
-    var svgRace = d3.selectAll('#Top6').attr('width',document.getElementById('divBoxtopworld_race').offsetWidth);
+    var svgRace = d3.selectAll('#Top6').attr('width',document.getElementById('top6Div').offsetWidth);
         //Using this selection to update the SVG everytime the function is called
     svgRace.selectAll("*").remove();
 
@@ -26,14 +26,10 @@ function top6(){
         var sorted_3_second = [sorted_data[3], sorted_data[4], sorted_data[5]];
 
         var svgRace = d3.selectAll('#Top6')
-                        .attr('height', document.getElementById('divBoxtopworld_race').offsetHeight/4)
+                        .attr('height', document.getElementById('top6Div').offsetHeight)
 
-        width = document.getElementById('divBoxtopworld_race').offsetWidth
-        height = document.getElementById('divBoxtopworld_race').offsetHeight/4
-
-        console.log('top width '+ width)
-        console.log('top height '+ height)
-
+        width = document.getElementById('top6Div').offsetWidth
+        height = document.getElementById('top6Div').offsetHeight
 
         svgRace.append('g')
             .data(['Highest 6 infected (Confirmed)'])
@@ -41,7 +37,7 @@ function top6(){
             .text(['Highest 6 infected (Confirmed)'])
             .style('fill', 'white')
             .style('font-size', '16px')
-            .attr('x', width/4)
+            .attr('x', width/5)
             .attr('y', 0.05405*height);
 
         svgRace.selectAll('body')
@@ -67,7 +63,7 @@ function top6(){
                 return numberWithCommas(d['confirmed']);
             })
             .style('fill', 'white')
-            .attr('y',80)
+            .attr('y',0.33*height)
             .attr('text-anchor','left')
             .attr('x', function(d,i){
                 return i*100 + width/6;

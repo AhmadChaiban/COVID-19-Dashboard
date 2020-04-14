@@ -14,17 +14,21 @@
         <h1 style = "text-align: center; font-family: monospace; font-size: 30px;opacity: 1;padding-top: 1%; color: white">COVID-19 Updates</h1>
     </div>
 
-    <div class = 'container no-gutters'>
-        <div class = "row no-gutters" style = "width:100%;height:100%; padding-top:0.6%; flex-wrap: wrap">
-            <div class = "col-md-4" style="height: 900px; max-width: 100%;" id = "divBoxtopworld_race">
-                <svg style = 'padding-top:3%' height ='400px' width="100%" id = "Top6" class = 'zulu'></svg>
-                <svg height ='400px' width="100%" id = "worldRace" class = 'charlie'></svg>
+    <div class = 'container-fluid no-gutters' style = 'width:100%'>
+        <div class = "row no-gutters" style = "width:100%;height:100%; max-width:100%; padding-top:0.6%; flex-wrap: wrap">
+            <div class = "col-md-2" style="height: 700px; max-width: 100%;" id = "divBoxtopworld_race">
+                <div class = 'row' style = 'height:300px;width: 100%;' id = 'top6Div'>
+                    <svg style = 'padding-top:3%' height ='400px' width="100%" id = "Top6" class = 'zulu'></svg>
+                </div>
+                <div class = 'row' style = 'height:300px' id = 'worldRaceDiv'>
+                    <svg height ='400px' width="100%" id = "worldRace" class = 'charlie'></svg>
+                </div>
             </div>
-            <div class = "col-lg-8" style="height:400px;width:100%;" id = "divBox">
-                <svg height =5% width="100%" id = "node" class = 'bravo'></svg>
+            <div class = "col-lg-6" style="height:500px;width:100%;" id = "divBox">
+                <svg height ='400px' width="100%" id = "node" class = 'bravo'></svg>
             </div>
-            <div class = "col-lg-8" style="height:400px;width:100%;" id = "divBox">
-                <svg height =5% width="100%" id = "histogramNode" class = 'alpha'></svg>
+            <div class = "col-sm-4" style="height:600px;width:100%;" id = "divBoxHist">
+                <svg height =100% width="100%" id = "histogramNode" class = 'alpha'></svg>
             </div>
         </div>
     </div>
@@ -48,12 +52,12 @@
         heatMap();
         worldRace();
         top6();
-        countrySpecificHist('US');
+        countrySpecificHist('all');
         window.addEventListener("resize", function(event){
             heatMap();
             worldRace();
             top6();
-            countrySpecificHist('US');
+            countrySpecificHist('all');
         });
 
         function removeElementsByClass(className){
@@ -68,7 +72,7 @@
     <style>
         rect.zoom-panel {
           cursor: move;
-          fill: #fff;
+          fill:#3e3e3f;
           pointer-events: all;
         }
         

@@ -14,7 +14,7 @@ function aggregate(json_array){
 
 function worldRace(){
 
-    var svg = d3.selectAll('#worldRace').attr('width',document.getElementById('divBoxtopworld_race').offsetWidth);
+    var svg = d3.selectAll('#worldRace').attr('width',document.getElementById('worldRaceDiv').offsetWidth);
         //Using this selection to update the SVG everytime the function is called
     svg.selectAll("*").remove();
 
@@ -24,14 +24,14 @@ function worldRace(){
 
         // set the dimensions and margins of the graph
         var margin = {top: 10, right: 30, bottom: 0, left: 30},
-            width = document.getElementById('divBoxtopworld_race').offsetWidth - margin.left - margin.right,
-            height = document.getElementById('divBoxtopworld_race').offsetHeight/3 - margin.top - margin.bottom;
+            width = document.getElementById('worldRaceDiv').offsetWidth - margin.left - margin.right,
+            height = document.getElementById('worldRaceDiv').offsetHeight - margin.top - margin.bottom;
 
         // append the svg object to the body of the page
         var svg = d3.select("#worldRace")
             .append("svg")
-                .attr("width", document.getElementById('divBoxtopworld_race').offsetWidth + margin.left + margin.right)
-                .attr("height", document.getElementById('divBoxtopworld_race').offsetHeight*1.2 + margin.top + margin.bottom)
+                .attr("width", document.getElementById('worldRaceDiv').offsetWidth + margin.left + margin.right)
+                .attr("height", document.getElementById('worldRaceDiv').offsetHeight*1.2 + margin.top + margin.bottom)
             .append("g")
                 .attr("transform",
                     "translate(" + margin.left + "," + margin.top + ")");
