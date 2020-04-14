@@ -100,13 +100,15 @@ function countrySpecificHist(country){
                     .attr('y', function(d, i){
                     return yScale(parseInt(d.value))
                     })
+                    .style('fill', 'EAD8BD')
+                    .style('opacity', 0.7)
                     .attr('width', xBand.bandwidth()*0.9)
                     .attr('height', function(d){
                     return height - yScale(d.value)
                     });
 
         
-            let bars2 = svg.append('g')
+        let bars2 = svg.append('g')
                     .attr('clip-path','url(#my-clip-path)')
                     .selectAll('.bar')
                     .data(data)
@@ -123,8 +125,8 @@ function countrySpecificHist(country){
                     .attr('height', function(d){
                     return height - yScale(d.value)
                     })
-                    .style('fill','red')
-                    .style('opacity',0.5)
+                    .style('fill','5A8895')
+                    .style('opacity',0.7)
 
         let bars3 = svg.append('g')
             .attr('clip-path','url(#my-clip-path)')
@@ -143,7 +145,7 @@ function countrySpecificHist(country){
             .attr('height', function(d){
             return height - yScale(d.value)
             })
-            .style('fill','green')
+            .style('fill','#9ECAE1')
             .style('opacity',0.7)
 
         let bars4 = svg.append('g')
@@ -163,8 +165,8 @@ function countrySpecificHist(country){
             .attr('height', function(d){
             return height - yScale(d.value)
             })
-            .style('fill','black')
-            .style('opacity',1)
+            .style('fill','0E77B4')
+            .style('opacity',0.7)
 
 
         let defs = svg.append('defs')
@@ -209,7 +211,8 @@ function countrySpecificHist(country){
                 return 25*i + 30
             });
 
-        var colors = ['#007bff', 'red', 'green', 'black'];
+        var colors = ['#EAD8BD', '#5A8895', '#9ECAE1', '#0E77B4'];
+
         
         svg.selectAll('#histogramNode')
             .append('g')
