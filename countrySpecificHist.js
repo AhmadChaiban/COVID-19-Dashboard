@@ -30,11 +30,11 @@ function countrySpecificHist(country){
         let margin = {
             top: 20,
             right: 50,
-            bottom: 150,
+            bottom: 0,
             left: 100
             },
-            width = document.getElementById('divBoxHist').offsetWidth - margin.left - margin.right,
-            height = document.getElementById('divBoxHist').offsetHeight - margin.top - margin.bottom,
+            width = document.getElementById('histogramDiv').offsetWidth - margin.left - margin.right,
+            height = document.getElementById('histogramDiv').offsetHeight - margin.top - margin.bottom,
             radius = (Math.min(width, height) / 2) - 10,
             node
 

@@ -27,8 +27,13 @@
             <div class = "col-lg-6" style="height:500px;width:100%;" id = "divBox">
                 <svg height ='400px' width="100%" id = "node" class = 'bravo'></svg>
             </div>
-            <div class = "col-sm-4" style="height:600px;width:100%;" id = "divBoxHist">
-                <svg height =100% width="100%" id = "histogramNode" class = 'alpha'></svg>
+            <div class = "col-sm-4" style="height:950px;width:100%;" id = "divBoxHist">
+                <div style = 'height:350px' id = 'histogramDiv'>
+                    <svg height =100% width="100%" id = "histogramNode" class = 'alpha'></svg>
+                </div>
+                <div style = 'height:600px' id = 'lineDiv'>
+                    <svg height ="100%" width="100%" id = "lineNode" class = 'delta'></svg>
+                </div>
             </div>
         </div>
     </div>
@@ -40,6 +45,7 @@
     <!-- <script src="topojson-simplify.min.js"></script> -->
     <script src="d3-tip.js"></script>
     <script type="text/javascript" src="countrySpecificHist.js"></script>
+    <script type="text/javascript" src="lineGraphDaily.js"></script>
     <script type="text/javascript" src="heatMap.js"></script>
     <script type="text/javascript" src="top_6_worldwide.js"></script>
     <script type="text/javascript" src="worldRace.js"></script>
@@ -78,6 +84,35 @@
         
         .bar {
           fill: steelblue;
+        }
+        
+        .line {
+                fill: none;
+                stroke: steelblue;
+                stroke-width: 1.5px;
+                }
+
+        .line_recovered {
+                fill: none;
+                stroke: steelblue;
+                stroke-width: 1.5px;
+                }
+
+        .line_active {
+                fill: none;
+                stroke: steelblue;
+                stroke-width: 1.5px;
+                }
+
+        .line_deaths {
+                fill: none;
+                stroke: steelblue;
+                stroke-width: 1.5px;
+                }
+        .zoom {
+            cursor: move;
+            fill: none;
+            pointer-events: all;
         }
     </style>
 </body>
