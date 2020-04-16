@@ -72,17 +72,16 @@ d3.csv("cases_per_day_agg.csv", type, function (error, data) {
   x2.domain(x.domain());
   y2.domain(y.domain());
 
-  console.log(data)
-
-
     focus.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+        .style('stroke', 'white');
 
     focus.append("g")
         .attr("class", "axis axis--y")
-        .call(yAxis);
+        .call(yAxis)
+        .style('stroke', 'white');
 
     Line_chart.append("path")
         .datum(data)
@@ -107,6 +106,33 @@ d3.csv("cases_per_day_agg.csv", type, function (error, data) {
         .attr("class", "line_deaths")
         .attr("d", line_deaths)
         .style('stroke', '#0E77B4');
+
+    var bisect = d3.bisector(function(d) { return d.x; }).left;
+
+        // Create the circle that travels along the curve of chart
+        // var focus = svg.append('g')
+        //   .append('circle')
+        //     .style("fill", "none")
+        //     .attr("stroke", "black")
+        //     .attr('r', 8.5)
+        //     .style("opacity", 0)
+      
+        // Create the text that travels along the curve of chart
+        var focusText = svg.append('g')
+          .append('text')
+            .style("opacity", 0)
+            .attr("text-anchor", "left")
+            .attr("alignment-baseline", "middle")
+      
+        // Create a rect on top of the svg area: this rectangle recovers mouse position
+        svg.append('rect')
+          .style("fill", "none")
+          .style("pointer-events", "all")
+          .attr('width', width)
+          .attr('height', height)
+          .on('mouseover', mouseover)
+          .on('mousemove', mousemove)
+          .on('mouseout', mouseout);
 
 //     context.append("path")
 //         .datum(data)
@@ -210,3 +236,26 @@ function type(d) {
   d.deaths = parseInt(d.deaths);
   return d;
 }
+
+function mouseover() {
+    focus.style("opacity", 1)
+    focusText.style("opacity",1)
+  }
+
+  function mousemove() {
+    // recover coordinate we need
+    var x0 = x.invert(d3.mouse(this)[0]);
+    var i = bisect(data, x0, 1);
+    selectedData = data[i]
+    focus
+      .attr("cx", x(selectedData.x))
+      .attr("cy", y(selectedData.y))
+    focusText
+      .html("x:" + selectedData.x + "  -  " + "y:" + selectedData.y)
+      .attr("x", x(selectedData.x)+15)
+      .attr("y", y(selectedData.y))
+    }
+  function mouseout() {
+    focus.style("opacity", 0)
+    focusText.style("opacity", 0)
+  }
