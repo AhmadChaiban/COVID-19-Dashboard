@@ -63,11 +63,14 @@
         worldRace();
         top6();
         countrySpecificHist('all');
+        lineGraph();
         window.addEventListener("resize", function(event){
             heatMap();
             worldRace();
             top6();
             countrySpecificHist('all');
+            lineGraph();
+
         });
 
         function removeElementsByClass(className){
