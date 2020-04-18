@@ -159,7 +159,7 @@ function lineGraph(){
             .style('fill','white')
             .attr('x',200)
             .attr('y', function(d,i){
-                return 25*i + 130
+                return 25*i + 55
             });
 
         var colors = ['white', '#EAD8BD', '#5A8895', '#0E77B4'];
@@ -173,10 +173,10 @@ function lineGraph(){
             .attr('x1', 180)
             .attr('x2', 160)
             .attr('y1',function(d,i){
-                return 25*i +127;
+                return 25*i +50;
             })
             .attr('y2',function(d,i){
-                return 25*i +127;
+                return 25*i +50;
             })
             .style('stroke', function(d,i){
                 return colors[i];
