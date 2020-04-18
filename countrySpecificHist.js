@@ -38,7 +38,7 @@ function countrySpecificHist(country){
             radius = (Math.min(width, height) / 2) - 10,
             node
 
-
+        d3.selectAll('#histogramNode').selectAll('*').remove()
         var svg = d3.select('#histogramNode')
                     .attr('width', width + margin.left + margin.right)
                     .attr('height', height + margin.left + margin.right )
@@ -50,8 +50,7 @@ function countrySpecificHist(country){
                         .extent([[0, 0], [width, height]])
                         .on('zoom', zoom)
                     )
-
-        svg.selectAll('*').remove()
+        
 
         // the scale
         let x = d3.scaleLinear().range([0, width])
