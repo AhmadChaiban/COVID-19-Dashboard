@@ -134,7 +134,7 @@ function lineGraph(){
         .attr("width", width)
         .attr("height", height)
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        .call(zoom);
+        // .call(zoom);
 
 
         var columns = ['Confirmed', 'Active', 'Recovered', 'Deaths']

@@ -44,12 +44,12 @@ function countrySpecificHist(country){
                     .attr('height', height + margin.left + margin.right )
                     .append('g')
                     .attr('transform', `translate(${margin.left}, ${margin.top})`)
-                    .call(
-                        d3.zoom()
-                        .translateExtent([[0,0], [width, height]])
-                        .extent([[0, 0], [width, height]])
-                        .on('zoom', zoom)
-                    )
+                    // .call(
+                    //     d3.zoom()
+                    //     .translateExtent([[0,0], [width, height]])
+                    //     .extent([[0, 0], [width, height]])
+                    //     .on('zoom', zoom)
+                    // )
         
 
         // the scale
