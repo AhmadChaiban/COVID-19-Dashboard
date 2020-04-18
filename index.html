@@ -48,7 +48,7 @@
     <!-- <script src="topojson-simplify.min.js"></script> -->
     <script src="d3-tip.js"></script>
     <script type="text/javascript" src="countrySpecificHist.js"></script>
-    <!-- <script type="text/javascript" src="cureStatus.js"></script> -->
+    <script type="text/javascript" src="percentInfo.js"></script>
     <script type="text/javascript" src="lineGraphDaily.js"></script>
     <script type="text/javascript" src="heatMap.js"></script>
     <script type="text/javascript" src="top_6_worldwide.js"></script>
@@ -64,13 +64,14 @@
         top6();
         countrySpecificHist('all');
         lineGraph();
+        worldPercent();
         window.addEventListener("resize", function(event){
             heatMap();
             worldRace();
             top6();
             countrySpecificHist('all');
             lineGraph();
-
+            worldPercent();
         });
 
         function removeElementsByClass(className){
