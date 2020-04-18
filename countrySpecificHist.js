@@ -34,7 +34,7 @@ function countrySpecificHist(country){
             left: 100
             },
             width = document.getElementById('histogramDiv').offsetWidth - margin.left - margin.right,
-            height = document.getElementById('histogramDiv').offsetHeight - margin.top - margin.bottom,
+            height = document.getElementById('histogramDiv').offsetHeight*0.9 - margin.top - margin.bottom,
             radius = (Math.min(width, height) / 2) - 10,
             node
 

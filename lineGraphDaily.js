@@ -1,7 +1,7 @@
 function lineGraph(){
 
     var svg = d3.selectAll("#lineNode"),
-        margin = {top: 120, right: 50, bottom: 110, left: 100},
+        margin = {top: 20, right: 50, bottom: 50, left: 100},
         margin2 = {top: 430, right: 20, bottom: 30, left: 40},
         width = document.getElementById('lineDiv').offsetWidth - margin.left - margin.right,
         height = document.getElementById('lineDiv').offsetHeight - margin.top - margin.bottom,
