@@ -1,6 +1,6 @@
 function heatMap(){
 
-    var svg = d3.selectAll('#node').attr('width',document.getElementById('divBox').offsetWidth);
+    var svg = d3.selectAll('#node').attr('width',document.getElementById('nodeDiv').offsetWidth);
         //Using this selection to update the SVG everytime the function is called
     svg.selectAll("*").remove();
 
@@ -20,8 +20,8 @@ function heatMap(){
                 })
 
     var margin = {top: 0, right: 0, bottom: 0, left: 10},s
-                width = document.getElementById('divBox').offsetWidth - margin.left - margin.right,
-                height = document.getElementById('divBox').offsetHeight - margin.top - margin.bottom;
+                width = document.getElementById('nodeDiv').offsetWidth - margin.left - margin.right,
+                height = document.getElementById('nodeDiv').offsetHeight - margin.top - margin.bottom;
 
     var color = d3.scaleThreshold()
         .domain([10000,100000,500000,1000000,5000000,10000000,50000000,100000000,500000000,1500000000])
@@ -81,7 +81,6 @@ function heatMap(){
     topology = topojson.presimplify(topology);
 
     var final_data_simplified = []
-    console.log(data.features.length)
     for(i=0; i<data.features.length;i++){
         final_data_simplified.push(topojson.feature(topology,topology.objects[i]));
     }

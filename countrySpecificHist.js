@@ -10,9 +10,6 @@ function countrySpecificHist(country){
 
         delete data_entry['columns'];
 
-        console.log(data_entry)
-
-
         let data = []
         let ordinals = []
 

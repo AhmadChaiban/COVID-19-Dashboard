@@ -31,8 +31,6 @@ function top6(){
         width = document.getElementById('top6Div').offsetWidth
         height = document.getElementById('top6Div').offsetHeight
 
-        console.log(width + ' hello')
-
         svgRace.append('g')
             .data(['Highest 6 infected (Confirmed)'])
             .append('text')
@@ -47,7 +45,6 @@ function top6(){
             .enter()
             .append('text')
             .text(function(d,i){
-                console.log(d['name'])
                 return d['name'];
             })
             .style('fill', 'white')

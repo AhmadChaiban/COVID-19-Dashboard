@@ -53,8 +53,6 @@ function worldRace(){
             .style('fill', 'white')
             .style('stroke-width',0.5);
 
-        console.log(aggregation[0])
-
         // Add Y axis
         var y = d3.scaleLinear()
             .domain([0, aggregation[0]])

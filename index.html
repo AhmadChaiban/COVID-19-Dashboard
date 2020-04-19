@@ -30,13 +30,13 @@
                 </div>
             </div>
             <div style = 'width: 0.7%'></div>
-            <div class = "col-md-5" style="height:420px;width:100%;min-width:25%;" id = "divBox">
-                <div class = 'card' style = 'height:400px;background : #2D3642;' id = 'worldRaceDiv'>
+            <div class = "col-md-5" style="height:870px;width:100%;min-width:25%;" id = "divBox">
+                <div class = 'card' style = 'height:410px;background : #2D3642;' id = 'nodeDiv'>
                     <svg height ='400px' width="100%" id = "node" class = 'bravo'></svg>
                 </div>
-                <div style = 'height: 2.5%'></div>
-                <div class = 'card' style = 'height:442px; background: #2d3642' id = 'lineDiv'>
-
+                <div style = 'height: 1.5%'></div>
+                <div class = 'card' style = 'height:430px; background: #2d3642' id = 'latestCaseDiv'>
+                    <svg height ='400px' width="100%" id = "latestCasesNode" class = 'bravo'></svg>                    
                 </div>
             </div>
             <div style = 'width: 0.7%'></div>
@@ -60,6 +60,7 @@
     <script src="d3-tip.js"></script>
     <script type="text/javascript" src="countrySpecificHist.js"></script>
     <script type="text/javascript" src="percentInfo.js"></script>
+    <script type="text/javascript" src="LatestCases.js"></script>
     <script type="text/javascript" src="lineGraphDaily.js"></script>
     <script type="text/javascript" src="heatMap.js"></script>
     <script type="text/javascript" src="top_6_worldwide.js"></script>
@@ -76,6 +77,7 @@
         countrySpecificHist('all');
         lineGraph();
         worldPercent();
+        latestCases();
         window.addEventListener("resize", function(event){
             heatMap();
             worldRace();
@@ -83,6 +85,7 @@
             countrySpecificHist('all');
             lineGraph();
             worldPercent();
+            latestCases();
         });
 
         function removeElementsByClass(className){

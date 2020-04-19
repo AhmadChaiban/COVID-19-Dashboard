@@ -11,7 +11,6 @@ function worldPercent(){
     d3.tsv("world_covid.tsv", function(data) {
 
         var aggregation = aggregate(data);
-        console.log(aggregation);
 
         var percent_of_world_infected = (aggregation[0]/7794798739) * 100;
 
