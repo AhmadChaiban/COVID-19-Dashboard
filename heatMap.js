@@ -63,8 +63,8 @@ function heatMap(){
     // }
 
     var projection = d3.geoMercator()
-                    .scale(0.03939*width/1.5 + 0.104166*height+50)
-                    .translate( [width / 2, height / 2.1]);
+                    .scale(0.03939*width + 0.104166*height+20)
+                    .translate( [width/2.3, height / 1.85]);
 
     var path = d3.geoPath().projection(projection);
 

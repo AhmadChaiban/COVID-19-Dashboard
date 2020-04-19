@@ -58,7 +58,7 @@ function worldRace(){
         // Add Y axis
         var y = d3.scaleLinear()
             .domain([0, aggregation[0]])
-            .range([ height, 30]);
+            .range([ height, 90]);
         // svg.append("g")
         //     .style('stroke','white')
         //     .call(d3.axisLeft(y));
@@ -98,16 +98,17 @@ function worldRace(){
             .style('fill','white')
             .attr('x', function(d,i){ return x(domain_array[i]) + 10})
             .attr('y', function(d,i){ return y(aggregation[i])})
-            .style('font-size', '12px');
+            .style('font-size', 0.05*width + 'px');
 
         svg.selectAll('body')
             .data(['text'])
             .enter()
             .append('text')
             .text('COVID-19 Worldwide Race')
-            .attr('x', width/6)
-            .attr('y', 0.01546*height)
-            .style('fill','white');
+            .attr('x', width/12)
+            .attr('y', 0.1*height)
+            .style('fill','white')
+            .style('font-size', 0.07*width + 'px');
         
 
     });

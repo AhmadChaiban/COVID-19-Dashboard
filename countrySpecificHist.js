@@ -1,15 +1,16 @@
 
 
 function countrySpecificHist(country){
+    
+    var parseDate = d3.timeParse("%Y-%m-%d");
 
     if(country == 'all'){
 
-
-        d3.csv("cases_per_day_diff.csv", function(data_entry) {
+        d3.csv("cases_per_day_diff.csv", type, function(error ,data_entry) {
 
         delete data_entry['columns'];
 
-        console.log(data_entry[3].confirmed);
+        console.log(data_entry)
 
 
         let data = []
@@ -76,9 +77,11 @@ function countrySpecificHist(country){
         .attr('transform', `translate(0, ${height})`)
         .call(
             d3.axisBottom(xScale).tickFormat((d, e) => {
-            return ordinals[d]
+            split_date = String(ordinals[d]).split(' ')
+            return split_date[1] + ' ' + split_date[2]
             })
         )
+        .selectAll('text').attr('transform', `translate(0,10) rotate(-45)`)
 
         // y axis
         let yAxis = svg.append('g')
@@ -259,5 +262,13 @@ function countrySpecificHist(country){
     });
 
     }
-    
+    function type(d) {
+        d.date = parseDate(d.date);
+        d.confirmed = parseInt(d.confirmed);
+        d.recovered = parseInt(d.recovered);
+        d.active = parseInt(d.active);
+        d.deaths = parseInt(d.deaths);
+        return d;
+    }
+
 }

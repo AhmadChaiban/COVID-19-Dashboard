@@ -1,7 +1,7 @@
 function lineGraph(){
 
     var svg = d3.selectAll("#lineNode"),
-        margin = {top: 20, right: 50, bottom: 50, left: 100},
+        margin = {top: 20, right: 100, bottom: 70, left: 100},
         margin2 = {top: 430, right: 20, bottom: 30, left: 40},
         width = document.getElementById('lineDiv').offsetWidth - margin.left - margin.right,
         height = document.getElementById('lineDiv').offsetHeight - margin.top - margin.bottom,
@@ -80,7 +80,9 @@ function lineGraph(){
             .attr("class", "axis axis--x")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
-            .style('stroke', 'white');
+            .style('stroke', 'white')
+            .selectAll('text')
+                .attr('transform', 'translate(0,10) rotate(-45)');
 
         focus.append("g")
             .attr("class", "axis axis--y")

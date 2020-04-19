@@ -39,7 +39,7 @@ function top6(){
             .text(['Highest 6 infected (Confirmed)'])
             .style('fill', 'white')
             .style('font-size', (0.052*width)+'px')
-            .attr('x', width/5)
+            .attr('x', width/7)
             .attr('y', 0.08*height);
 
         svgRace.selectAll('body')
@@ -51,11 +51,11 @@ function top6(){
                 return d['name'];
             })
             .style('fill', 'white')
-            .attr('y',0.24*height)
+            .attr('y',0.28*height)
             .attr('text-anchor','left')
             .style('font-size', (0.052*width)+'px')
             .attr('x', function(d,i){
-                return (i*(0.25*width)) + width/6;
+                return (i*(0.25*width)) + width/7;
             });
 
         svgRace.selectAll('body')
@@ -66,11 +66,11 @@ function top6(){
                 return numberWithCommas(d['confirmed']);
             })
             .style('fill', 'white')
-            .attr('y',0.35*height)
+            .attr('y',0.38*height)
             .attr('text-anchor','left')
             .style('font-size', (0.052*width)+'px')
             .attr('x', function(d,i){
-                return i*(0.25*width) + width/6;
+                return i*(0.25*width) + width/7;
             });
 
         svgRace.selectAll('body')
@@ -88,7 +88,7 @@ function top6(){
             .attr('text-anchor','left')
             .style('font-size', (0.052*width)+'px')
             .attr('x', function(d,i){
-                return i*(0.25*width) + width/6;
+                return i*(0.25*width) + width/7;
             });
 
         svgRace.selectAll('body')
@@ -103,7 +103,7 @@ function top6(){
             .attr('text-anchor','left')
             .style('font-size', (0.052*width)+'px')
             .attr('x', function(d,i){
-                return i*(0.25*width) + width/6;
+                return i*(0.25*width) + width/7;
             });
     
     });
