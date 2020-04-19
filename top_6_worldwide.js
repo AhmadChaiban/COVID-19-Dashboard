@@ -31,14 +31,16 @@ function top6(){
         width = document.getElementById('top6Div').offsetWidth
         height = document.getElementById('top6Div').offsetHeight
 
+        console.log(width + ' hello')
+
         svgRace.append('g')
             .data(['Highest 6 infected (Confirmed)'])
             .append('text')
             .text(['Highest 6 infected (Confirmed)'])
             .style('fill', 'white')
-            .style('font-size', '16px')
+            .style('font-size', (0.052*width)+'px')
             .attr('x', width/5)
-            .attr('y', 0.05405*height);
+            .attr('y', 0.08*height);
 
         svgRace.selectAll('body')
             .data(sorted_3_first)
@@ -51,8 +53,9 @@ function top6(){
             .style('fill', 'white')
             .attr('y',0.24*height)
             .attr('text-anchor','left')
+            .style('font-size', (0.052*width)+'px')
             .attr('x', function(d,i){
-                return i*100 + width/6;
+                return (i*(0.25*width)) + width/6;
             });
 
         svgRace.selectAll('body')
@@ -63,10 +66,11 @@ function top6(){
                 return numberWithCommas(d['confirmed']);
             })
             .style('fill', 'white')
-            .attr('y',0.33*height)
+            .attr('y',0.35*height)
             .attr('text-anchor','left')
+            .style('font-size', (0.052*width)+'px')
             .attr('x', function(d,i){
-                return i*100 + width/6;
+                return i*(0.25*width) + width/6;
             });
 
         svgRace.selectAll('body')
@@ -82,8 +86,9 @@ function top6(){
             .style('fill', 'white')
             .attr('y',0.56*height)
             .attr('text-anchor','left')
+            .style('font-size', (0.052*width)+'px')
             .attr('x', function(d,i){
-                return i*100 + width/6;
+                return i*(0.25*width) + width/6;
             });
 
         svgRace.selectAll('body')
@@ -94,10 +99,11 @@ function top6(){
                 return numberWithCommas(d['confirmed']);
             })
             .style('fill', 'white')
-            .attr('y',0.64*height)
+            .attr('y',0.67*height)
             .attr('text-anchor','left')
+            .style('font-size', (0.052*width)+'px')
             .attr('x', function(d,i){
-                return i*100 + width/6;
+                return i*(0.25*width) + width/6;
             });
     
     });

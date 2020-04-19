@@ -2,19 +2,19 @@
 <html lang="en" style = 'background-color:#212733 !important;'>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="heatMap.css">
     <link rel="stylesheet" href="bootStrap.css">
     <title>Document</title>
 </head>
-<body style = 'background-color:#212733 !important;'>
+<body class = 'body' style = 'background-color:#212733 !important;'>
 
     <div class = "col-lg-12" style = "width:100%;height:1%; padding-bottom:0.1%;background-color: black;">
         <h1 style = "text-align: center; font-family: monospace; font-size: 30px;opacity: 1;padding-top: 1%; color: white">COVID-19 Updates</h1>
     </div>
 
-    <div class = 'container-fluid no-gutters' style = 'width:100%'>
+    <div class = 'flex-container' style = 'width:100%;'>
         <div class = "row no-gutters" style = "width:100%;height:100%; max-width:100%; padding-top:0.6%; flex-wrap: wrap">
             <div class = "col-md-2" style="height: 870px; max-width: 100%;" id = "divBoxtopworld_race">
                 <div class = 'card' style = 'height:230px;width: 100%;background : #2D3642;' id = 'top6Div'>
@@ -29,15 +29,15 @@
                     <svg height ='300px' width="100%" id = "statusNode" class = 'charlie'></svg>
                 </div>
             </div>
-            <div style = 'width: 0.5%'></div>
-            <div class = "col-md-5" style="height:420px;width:100%;" id = "divBox">
+            <div style = 'width: 0.7%'></div>
+            <div class = "col-md-5" style="height:420px;width:100%;min-width:25%;" id = "divBox">
                 <div class = 'card' style = 'height:400px;background : #2D3642;' id = 'worldRaceDiv'>
                     <svg height ='400px' width="100%" id = "node" class = 'bravo'></svg>
                 </div>
             </div>
-            <div style = 'width: 0.5%'></div>
+            <div style = 'width: 0.7%'></div>
             <div class = "col-md-4" style="height:840px;width:100%;" id = "divBoxHist">
-                <div class = 'card' style = 'height:420px; ;background : #2D3642' id = 'histogramDiv'>
+                <div class = 'card' style = 'height:420px;background : #2D3642' id = 'histogramDiv'>
                     <svg height =100% width="100%" id = "histogramNode" class = 'alpha'></svg>
                 </div>
                 <div style = 'height: 1.5%'></div>
@@ -129,6 +129,15 @@
             fill: none;
             pointer-events: all;
         }
+
+        @media (max-width:768px){
+            .b, .a {
+                display: block;
+                float: none;
+                height: auto;
+            }
+        }   
+
     </style>
 </body>
 
