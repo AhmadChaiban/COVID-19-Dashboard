@@ -3,6 +3,10 @@ function worldPercent(){
     var width = document.getElementById('statusDiv').offsetWidth;
     var height = document.getElementById('statusDiv').offsetHeight;
 
+    console.log(width)
+    console.log(height)
+    d3.selectAll('#statusNode').selectAll('*').remove()
+
     var svg = d3.selectAll('#statusNode')
                 .append('g')
                 .attr('width', width)
@@ -21,20 +25,20 @@ function worldPercent(){
             .enter()
             .append('text')
             .text(percent_str)
-            .attr('x', 60)
-            .attr('y', 60)
+            .attr('x', 0.1881*width)
+            .attr('y', 90)
             .style('fill', 'white')
-            .style('font-size', '50px')
+            .style('font-size', 0.1567*width + 'px')
 
         svg.selectAll('#statusNode')
             .data(percent_str)
             .enter()
             .append('text')
             .text('Of People have been infected')
-            .attr('x', 60)
-            .attr('y', 90)
+            .attr('x', 0.1567*width)
+            .attr('y', 120)
             .style('fill', 'white')
-            .style('font-size', '16px')
+            .style('font-size', 0.0501*width+'px')
 
     });
 
