@@ -6,7 +6,7 @@ function countrySpecificHist(country){
 
     if(country == 'all'){
 
-        d3.csv("cases_per_day_diff.csv", type, function(error ,data_entry) {
+        d3.csv("cases_per_day_diff.csv", function(error ,data_entry) {
 
         delete data_entry['columns'];
 
@@ -19,10 +19,9 @@ function countrySpecificHist(country){
             value_rec: data_entry[i].recovered,
             value_active: data_entry[i].active,
             value_dead: data_entry[i].deaths,
-            city: 'test' + i
         })
 
-        ordinals.push(data_entry[i].date)
+        ordinals.push(parseDate(data_entry[i].date))
         }
 
         let margin = {
@@ -67,24 +66,28 @@ function countrySpecificHist(country){
 
         // x axis
         let xAxis = svg.append('g')
-        .style('stroke','white')
         .style('stroke-width',1)
         .attr('class', 'xAxis')
         .style('font-size','10px')
         .attr('transform', `translate(0, ${height})`)
         .call(
-            d3.axisBottom(xScale).tickFormat((d, e) => {
+            d3.axisBottom(xScale).tickFormat((d,i) => {
             split_date = String(ordinals[d]).split(' ')
-            return split_date[1] + ' ' + split_date[2]
+            console.log(ordinals[d])
+            // console.log(split_date)
+            if(undefined != ordinals[d]){
+                return split_date[1] + ' ' + split_date[2] 
+            }
             })
         )
-        .selectAll('text').attr('transform', `translate(0,10) rotate(-45)`)
+        .selectAll('text').style('fill','white').attr('transform', `translate(0,10) rotate(-45)`)
 
         // y axis
         let yAxis = svg.append('g')
                     .attr('class', 'y axis')
-                    .style('stroke','white')
+                    // .style('stroke','white')
                     .call(d3.axisLeft(yScale))
+                    .selectAll('text').style('fill','white')
 
         let bars = svg.append('g')
                     .attr('clip-path','url(#my-clip-path)')

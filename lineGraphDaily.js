@@ -80,14 +80,15 @@ function lineGraph(){
             .attr("class", "axis axis--x")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
-            .style('stroke', 'white')
             .selectAll('text')
-                .attr('transform', 'translate(0,10) rotate(-45)');
+                .attr('transform', 'translate(0,10) rotate(-45)')
+                .style('fill', 'white');
 
         focus.append("g")
             .attr("class", "axis axis--y")
             .call(yAxis)
-            .style('stroke', 'white');
+            .selectAll('text')
+                .style('fill', 'white');
 
         Line_chart.append("path")
             .datum(data)
