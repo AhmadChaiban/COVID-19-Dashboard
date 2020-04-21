@@ -73,7 +73,6 @@ function countrySpecificHist(country){
         .call(
             d3.axisBottom(xScale).tickFormat((d,i) => {
             split_date = String(ordinals[d]).split(' ')
-            console.log(ordinals[d])
             // console.log(split_date)
             if(undefined != ordinals[d]){
                 return split_date[1] + ' ' + split_date[2] 

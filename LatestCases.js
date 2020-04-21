@@ -30,7 +30,7 @@ function latestCases(){
 
         last_entry = data[data.length - 1]
 
-        data = [last_entry['confirmed'], last_entry['recovered'], last_entry['deaths'], last_entry['active'] ]
+        data = [last_entry['confirmed'],last_entry['active'], last_entry['recovered'], last_entry['deaths']]
 
         ordinals = ['confirmed', 'recovered', 'deaths', 'active']
 
@@ -40,31 +40,77 @@ function latestCases(){
         x.domain(ordinals.map(function(d,i) { return ordinals[i]; }));
         y.domain([0, d3.max(data, function(d,i) { return data[i]; })]);
 
+        var colors = ['#EAD8BD', '#5A8895', '#9ECAE1', '#0E77B4'];
+
         // append the rectangles for the bar chart
         svg.selectAll(".bar")
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d,i) { return x(ordinals[i]); })
-        .attr("width", x.bandwidth())
+        .attr("x", function(d,i) { return x(ordinals[i]) + 0.04376*width; })
+        .attr("width", x.bandwidth()/4)
+        .attr('rx', 10)
         .attr("y", function(d,i) { return y(data[i]); })
-        .attr("height", function(d,i) { return height - y(data[i]); });
+        .attr("height", function(d,i) { return height - y(data[i]); })
+        .style('fill', function(d,i){
+            return colors[i]
+        });
+
+        var titles = ['Confirmed', 'Active', 'Recoveries', 'Deaths']
+
+        svg.selectAll('#latestCasesNode')
+            .data(titles)
+            .enter()
+            .append('text')
+            .text(function(d,i){
+                return titles[i];
+            })
+            .style('fill','white')
+            .attr('x', function(d,i){
+                return x(ordinals[i]) + 0.04564*width;
+            })
+            .attr('y', function(d,i){
+                return y(-8000);
+            })
+            .style('font-size', '80%');
+
+
+        svg.selectAll('#latestCasesNode')
+            .data(data)
+            .enter()
+            .append('text')
+            .text(function(d,i){
+                return data[i];
+            })
+            .style('fill','white')
+            .attr('x', function(d,i){
+                return x(ordinals[i]) + 0.04564*width;
+            })
+            .attr('y', function(d,i){
+                return y(-4500);
+            })
+            .style('font-size', '80%');
+
 
         // add the x Axis
-        svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x))
-        .selectAll('text').style('fill', 'white');
+        // svg.append("g")
+        // .attr("transform", "translate(0," + height + ")")
+        // .call(d3.axisBottom(x))
+        // .selectAll('text').style('fill', 'white');
 
         // add the y Axis
-        svg.append("g")
-        .call(d3.axisLeft(y))
-        .selectAll('text').style('fill','white');
+        // svg.append("g")
+        // .call(d3.axisLeft(y))
+        // .selectAll('text').style('fill','white');
+        var parseDate = d3.timeParse("%Y-%m-%d");
+
+        var todayDate = String(parseDate(last_entry['date'])).split(' ');
+
 
         svg.append('g')
             .append('text')
-            .text("Today - " + last_entry['date'])
-            .attr('x', width/2)
+            .text("Latest Cases | " + todayDate[1]+' '+todayDate[2] + ' ' + todayDate[3])
+            .attr('x', width/3)
             .style('fill', 'white')
 
     });
