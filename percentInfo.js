@@ -3,8 +3,6 @@ function worldPercent(){
     var width = document.getElementById('statusDiv').offsetWidth;
     var height = document.getElementById('statusDiv').offsetHeight;
 
-    console.log(width)
-    console.log(height)
     d3.selectAll('#statusNode').selectAll('*').remove()
 
     var svg = d3.selectAll('#statusNode')

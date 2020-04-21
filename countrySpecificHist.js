@@ -28,7 +28,7 @@ function countrySpecificHist(country){
             top: 20,
             right: 50,
             bottom: 0,
-            left: 100
+            left: 80
             },
             width = document.getElementById('histogramDiv').offsetWidth - margin.left - margin.right,
             height = document.getElementById('histogramDiv').offsetHeight*0.9 - margin.top - margin.bottom,
@@ -199,6 +199,7 @@ function countrySpecificHist(country){
         //     .attr('y', 10)
         //     .attr("transform","translate(100,100)");
 
+
         svg.selectAll('#histogramNode')
             .append('g')
             .data(columns)
@@ -208,7 +209,8 @@ function countrySpecificHist(country){
                 return columns[i];
             })
             .style('fill','white')
-            .attr('x',100)
+            .attr('font-size', '12px')
+            .attr('x',0.1647*width)
             .attr('y', function(d,i){
                 return 25*i + 30
             });
@@ -221,8 +223,8 @@ function countrySpecificHist(country){
             .data(colors)
             .enter()
             .append('line')
-            .attr('x1', 80)
-            .attr('x2', 60)
+            .attr('x1', 0.13179*width)
+            .attr('x2', 0.095*width)
             .attr('y1',function(d,i){
                 return 25*i +27;
             })

@@ -1,7 +1,7 @@
 function lineGraph(){
 
     var svg = d3.selectAll("#lineNode"),
-        margin = {top: 20, right: 100, bottom: 70, left: 100},
+        margin = {top: 20, right: 60, bottom: 70, left: 80},
         margin2 = {top: 430, right: 20, bottom: 30, left: 40},
         width = document.getElementById('lineDiv').offsetWidth - margin.left - margin.right,
         height = document.getElementById('lineDiv').offsetHeight - margin.top - margin.bottom,
@@ -151,7 +151,7 @@ function lineGraph(){
         //     .attr('y', 10)
         //     .attr("transform","translate(100,100)");
 
-        svg.selectAll('#lineNode')
+        Line_chart.selectAll('#lineNode')
             .append('g')
             .data(columns)
             .enter()
@@ -160,26 +160,27 @@ function lineGraph(){
                 return columns[i];
             })
             .style('fill','white')
-            .attr('x',200)
+            .style('font-size', '12px')
+            .attr('x',0.18*width)
             .attr('y', function(d,i){
-                return 25*i + 55
+                return 25*i + 35
             });
 
         var colors = ['white', '#EAD8BD', '#5A8895', '#0E77B4'];
 
         
-        svg.selectAll('#lineNode')
+        Line_chart.selectAll('#lineNode')
             .append('g')
             .data(colors)
             .enter()
             .append('line')
-            .attr('x1', 180)
-            .attr('x2', 160)
+            .attr('x1', 0.15*width)
+            .attr('x2', 0.1*width)
             .attr('y1',function(d,i){
-                return 25*i +50;
+                return 25*i +32;
             })
             .attr('y2',function(d,i){
-                return 25*i +50;
+                return 25*i +32;
             })
             .style('stroke', function(d,i){
                 return colors[i];
