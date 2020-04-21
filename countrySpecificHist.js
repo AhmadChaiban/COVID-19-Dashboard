@@ -106,6 +106,23 @@ function countrySpecificHist(country){
                     .attr('width', xBand.bandwidth()*0.9)
                     .attr('height', function(d){
                     return height - yScale(d.value)
+                    })
+                    .on('mouseover', function(d,i){
+                        d3.select(this).style('opacity',0.4);
+                        svg.append('g')
+                            .append('text')
+                            .text(function(d){
+                                new_date = String(ordinals[i]).split(' ')
+                                return `(${data[i]['value']} , ${new_date[1]} ${new_date[2]})`;
+                            })
+                            .style('fill','white')
+                            .attr('x', xScale(i) - 50*xBand.bandwidth()*0.9/2)
+                            .attr('y', yScale(parseInt(d.value)))
+                            .attr('class','detailText');
+                    })
+                    .on('mouseout', function(d,i){
+                        d3.selectAll('.detailText').remove()
+                        d3.select(this).style('opacity',0.7)
                     });
 
         
@@ -124,10 +141,28 @@ function countrySpecificHist(country){
                     })
                     .attr('width', xBand.bandwidth()*0.9)
                     .attr('height', function(d){
-                    return height - yScale(d.value)
+                    return height - yScale(d.value_active)
                     })
                     .style('fill','5A8895')
                     .style('opacity',0.7)
+                    .on('mouseover', function(d,i){
+                        d3.select(this).style('opacity',0.4);
+                        svg.append('g')
+                            .append('text')
+                            .text(function(d){
+                                new_date = String(ordinals[i]).split(' ')
+                                return `(${data[i].value_active} , ${new_date[1]} ${new_date[2]})`;
+                            })
+                            .style('fill','white')
+                            .attr('x', xScale(i) - 50*xBand.bandwidth()*0.9/2)
+                            .attr('y', yScale(parseInt(d.value_active)))
+                            .attr('class','detailText');
+                    })
+                    .on('mouseout', function(d,i){
+                        d3.selectAll('.detailText').remove()
+                        d3.select(this).style('opacity',0.7)
+                    });
+
 
         let bars3 = svg.append('g')
             .attr('clip-path','url(#my-clip-path)')
@@ -144,10 +179,28 @@ function countrySpecificHist(country){
             })
             .attr('width', xBand.bandwidth()*0.9)
             .attr('height', function(d){
-            return height - yScale(d.value)
+            return height - yScale(d.value_rec)
             })
             .style('fill','#9ECAE1')
             .style('opacity',0.7)
+            .on('mouseover', function(d,i){
+                d3.select(this).style('opacity',0.4);
+                svg.append('g')
+                    .append('text')
+                    .text(function(d){
+                        new_date = String(ordinals[i]).split(' ')
+                        return `(${data[i].value_rec} , ${new_date[1]} ${new_date[2]})`;
+                    })
+                    .style('fill','white')
+                    .attr('x', xScale(i) - 50*xBand.bandwidth()*0.9/2)
+                    .attr('y', yScale(parseInt(d.value_rec)))
+                    .attr('class','detailText');
+            })
+            .on('mouseout', function(d,i){
+                d3.selectAll('.detailText').remove()
+                d3.select(this).style('opacity',0.7)
+            });
+
 
         let bars4 = svg.append('g')
             .attr('clip-path','url(#my-clip-path)')
@@ -164,10 +217,28 @@ function countrySpecificHist(country){
             })
             .attr('width', xBand.bandwidth()*0.9)
             .attr('height', function(d){
-            return height - yScale(d.value)
+            return height - yScale(d.value_dead)
             })
             .style('fill','0E77B4')
             .style('opacity',0.7)
+            .on('mouseover', function(d,i){
+                d3.select(this).style('opacity',0.4);
+                svg.append('g')
+                    .append('text')
+                    .text(function(d){
+                        new_date = String(ordinals[i]).split(' ')
+                        return `(${data[i].value_dead} , ${new_date[1]} ${new_date[2]})`;
+                    })
+                    .style('fill','white')
+                    .attr('x', xScale(i) - 50*xBand.bandwidth()*0.9/2)
+                    .attr('y', yScale(parseInt(d.value_dead)))
+                    .attr('class','detailText');
+            })
+            .on('mouseout', function(d,i){
+                d3.selectAll('.detailText').remove()
+                d3.select(this).style('opacity',0.7)
+            });
+
 
 
         let defs = svg.append('defs')
