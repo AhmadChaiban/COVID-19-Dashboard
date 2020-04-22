@@ -141,7 +141,7 @@ function countrySpecificHist(country){
                     })
                     .attr('width', xBand.bandwidth()*0.9)
                     .attr('height', function(d){
-                    return height - yScale(d.value_active)
+                    return height - yScale(d.value)
                     })
                     .style('fill','5A8895')
                     .style('opacity',0.7)
@@ -179,7 +179,7 @@ function countrySpecificHist(country){
             })
             .attr('width', xBand.bandwidth()*0.9)
             .attr('height', function(d){
-            return height - yScale(d.value_rec)
+            return height - yScale(d.value)
             })
             .style('fill','#9ECAE1')
             .style('opacity',0.7)
@@ -217,7 +217,7 @@ function countrySpecificHist(country){
             })
             .attr('width', xBand.bandwidth()*0.9)
             .attr('height', function(d){
-            return height - yScale(d.value_dead)
+            return height - yScale(d.value)
             })
             .style('fill','0E77B4')
             .style('opacity',0.7)
@@ -336,10 +336,10 @@ function countrySpecificHist(country){
     }
     function type(d) {
         d.date = parseDate(d.date);
-        d.confirmed = parseInt(d.confirmed);
-        d.recovered = parseInt(d.recovered);
-        d.active = parseInt(d.active);
-        d.deaths = parseInt(d.deaths);
+        d.confirmed = + parseInt(d.confirmed);
+        d.recovered = + parseInt(d.recovered);
+        d.active = + parseInt(d.active);
+        d.deaths = + parseInt(d.deaths);
         return d;
     }
 
