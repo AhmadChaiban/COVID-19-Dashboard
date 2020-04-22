@@ -69,6 +69,13 @@ function lineGraph(){
         .attr("class", "context")
         .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
+    svg.append("rect")
+        .attr("class", "zoom")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .call(zoom);
+
     d3.csv("cases_per_day_agg.csv", type, function (error, data) {
     if (error) throw error;
     x.domain(d3.extent(data, function(d) { return d.date; }));
@@ -117,31 +124,6 @@ function lineGraph(){
             .attr("d", line_deaths)
             .attr('id','lineCursor')
             .style('stroke', '#0E77B4');
-
-
-
-    //     context.append("path")
-    //         .datum(data)
-    //         .attr("class", "line")
-    //         .attr("d", line2);
-
-
-    //   context.append("g")
-    //       .attr("class", "axis axis--x")
-    //       .attr("transform", "translate(0," + height2 + ")")
-    //       .call(xAxis2);
-
-    //   context.append("g")
-    //       .attr("class", "brush")
-    //       .call(brush)
-    //       .call(brush.move, x.range());
-
-    svg.append("rect")
-        .attr("class", "zoom")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        // .call(zoom);
 
 
         var columns = ['Confirmed', 'Active', 'Recovered', 'Deaths']
@@ -219,6 +201,7 @@ function lineGraph(){
         var mouseG = svg.append("g")
         .attr("class", "mouse-over-effects")
         .attr('transform', 'translate(+80,+20)');
+        // .call(zoom);
       
         mouseG.append("path") // this is the black vertical line to follow mouse
             .attr("class", "mouse-line")
@@ -303,18 +286,20 @@ function lineGraph(){
                     }
                     
                     d3.select(this).select('text')
-                        .text(y.invert(pos.y).toFixed(0))
-                        .style('fill','white');
+                        .text(y.invert(pos.y).toFixed(0) + ' ' + String(x.invert(pos.x)).split(' ')[1] + ' ' +String(x.invert(pos.x)).split(' ')[2])
+                        .style('fill','white')
+                        .attr('transform','translate(-140,0)');
                         
-                    return "translate(" + mouse[0] + "," + pos.y +")";
+                        return "translate(" + (mouse[0]) + "," + pos.y +")";
                     });
+
             });
 
     });
 
 
     function brushed() {
-    if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
+    if (d3.event.sourceEvent && d3.event.sourceEvent.type === "mouse-over-effects") return; // ignore brush-by-zoom
     var s = d3.event.selection || x2.range();
     x.domain(s.map(x2.invert, x2));
     Line_chart.select(".line").attr("d", line);
