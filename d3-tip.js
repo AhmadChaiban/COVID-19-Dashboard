@@ -77,8 +77,8 @@
           .style('top', (y + 'px'))
           .style('left', (x + 'px'));
 
-          console.log(x)
-          console.log(y)
+          // console.log(x)
+          // console.log(y)
   
         return tip
       }
