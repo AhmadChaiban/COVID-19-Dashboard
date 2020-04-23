@@ -95,6 +95,7 @@ function countrySpecificHist(country){
                     .enter()
                     .append('rect')
                     .attr('class', 'bar')
+                    .attr('id', 'bar1')
                     .attr('x', function(d, i){
                     return xScale(i) - xBand.bandwidth()*0.9/2
                     })
@@ -123,7 +124,8 @@ function countrySpecificHist(country){
                     .on('mouseout', function(d,i){
                         d3.selectAll('.detailText').remove()
                         d3.select(this).style('opacity',0.7)
-                    });
+                    })
+                    .attr('visibility', 'visible');
 
         
         let bars2 = svg.append('g')
@@ -133,6 +135,7 @@ function countrySpecificHist(country){
                     .enter()
                     .append('rect')
                     .attr('class', 'bar')
+                    .attr('id', 'bar2')
                     .attr('x', function(d, i){
                     return xScale(i) - xBand.bandwidth()*0.9/2
                     })
@@ -161,7 +164,9 @@ function countrySpecificHist(country){
                     .on('mouseout', function(d,i){
                         d3.selectAll('.detailText').remove()
                         d3.select(this).style('opacity',0.7)
-                    });
+                    })
+                    .attr('visibility', 'visible');
+
 
 
         let bars3 = svg.append('g')
@@ -171,6 +176,7 @@ function countrySpecificHist(country){
             .enter()
             .append('rect')
             .attr('class', 'bar')
+            .attr('id', 'bar3')
             .attr('x', function(d, i){
             return xScale(i) - xBand.bandwidth()*0.9/2
             })
@@ -199,7 +205,8 @@ function countrySpecificHist(country){
             .on('mouseout', function(d,i){
                 d3.selectAll('.detailText').remove()
                 d3.select(this).style('opacity',0.7)
-            });
+            })
+            .attr('visibility', 'visible');
 
 
         let bars4 = svg.append('g')
@@ -209,6 +216,7 @@ function countrySpecificHist(country){
             .enter()
             .append('rect')
             .attr('class', 'bar')
+            .attr('id', 'bar4')
             .attr('x', function(d, i){
             return xScale(i) - xBand.bandwidth()*0.9/2
             })
@@ -237,8 +245,8 @@ function countrySpecificHist(country){
             .on('mouseout', function(d,i){
                 d3.selectAll('.detailText').remove()
                 d3.select(this).style('opacity',0.7)
-            });
-
+            })
+            .attr('visibility', 'visible');
 
 
         let defs = svg.append('defs')
@@ -283,6 +291,23 @@ function countrySpecificHist(country){
             .attr('x',0.1647*width)
             .attr('y', function(d,i){
                 return 25*i + 30
+            })
+            .on('click', function(d,i){
+                i = i+1
+                if(d3.selectAll('#bar'+i).attr('visibility') == 'hidden'){
+                    d3.selectAll('#bar'+i).attr('visibility', 'visible')
+                }
+                else{
+                    d3.selectAll('#bar'+i).attr('visibility', 'hidden')
+                }
+            })
+            .on('mouseover', function(d,i){
+                i+=1
+                d3.selectAll('#bar'+i).style('opacity',0.4)
+            })
+            .on('mouseout', function(d,i){
+                i+=1
+                d3.selectAll('#bar'+i).style('opacity',0.7)
             });
 
         var colors = ['#EAD8BD', '#5A8895', '#9ECAE1', '#0E77B4'];
