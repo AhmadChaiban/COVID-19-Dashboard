@@ -78,14 +78,21 @@
         lineGraph();
         worldPercent();
         latestCases();
+        var w = window.innerWidth;
+        var h = window.innerHeight;
         window.addEventListener("resize", function(event){
-            heatMap();
-            worldRace();
-            top6();
-            countrySpecificHist('all');
-            lineGraph();
-            worldPercent();
-            latestCases();
+            var new_w = window.innerWidth;
+            var new_h = window.innerHeight;
+            if( Math.abs(w*h - new_w*new_h) > 100){
+                heatMap();
+                worldRace();
+                top6();
+                countrySpecificHist('all');
+                lineGraph();
+                worldPercent();
+                latestCases();
+            }
+
         });
 
         function removeElementsByClass(className){
