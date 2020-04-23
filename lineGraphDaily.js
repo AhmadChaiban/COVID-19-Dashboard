@@ -126,7 +126,7 @@ function lineGraph(){
             .style('stroke', '#0E77B4');
 
 
-        var columns = ['Confirmed', 'Active', 'Recovered', 'Deaths']
+        var columns = ['Confirmed', 'Recovered', 'Active', 'Deaths']
 
         // svg.append('rect')
         //     .style('stroke','white')
@@ -288,7 +288,13 @@ function lineGraph(){
                     d3.select(this).select('text')
                         .text(y.invert(pos.y).toFixed(0) + ' ' + String(x.invert(pos.x)).split(' ')[1] + ' ' +String(x.invert(pos.x)).split(' ')[2])
                         .style('fill','white')
-                        .attr('transform','translate(-140,0)');
+                        .attr('transform', function(d){
+                            // if (i%2 == 0)
+                            //     return 'translate(-140,0)'
+                            // else
+                            //     return 'translate(0,0)'
+                            return 'translate(-140,0)'
+                        });  
                         
                         return "translate(" + (mouse[0]) + "," + pos.y +")";
                     });
