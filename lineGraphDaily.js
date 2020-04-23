@@ -126,7 +126,7 @@ function lineGraph(){
             .style('stroke', '#0E77B4');
 
 
-        var columns = ['Confirmed', 'Recovered', 'Active', 'Deaths']
+        var columns = ['Confirmed', 'Active', 'Recovered', 'Deaths']
 
         // svg.append('rect')
         //     .style('stroke','white')
@@ -136,6 +136,8 @@ function lineGraph(){
         //     .attr('x', 10)
         //     .attr('y', 10)
         //     .attr("transform","translate(100,100)");
+
+        var line_classes = ['.line','.line_recovered', '.line_active','.line_deaths']
 
         Line_chart.selectAll('#lineNode')
             .append('g')
@@ -150,9 +152,25 @@ function lineGraph(){
             .attr('x',0.18*width)
             .attr('y', function(d,i){
                 return 25*i + 35
+            }).on('click', function(d,i){
+                i = i+1
+                if(d3.selectAll(line_classes[i]).attr('visibility') == 'hidden'){
+                    d3.selectAll(line_classes[i]).attr('visibility', 'visible')
+                }
+                else{
+                    d3.selectAll(line_classes[i]).attr('visibility', 'hidden')
+                }
+            })
+            .on('mouseover', function(d,i){
+                i+=1
+                d3.selectAll(line_classes[i]).style('opacity',0.4)
+            })
+            .on('mouseout', function(d,i){
+                i+=1
+                d3.selectAll(line_classes[i]).style('opacity',0.7)
             });
 
-        var colors = ['white', '#EAD8BD', '#5A8895', '#0E77B4'];
+        var colors = ['white', '#5A8895', '#EAD8BD', '#0E77B4'];
 
         
         Line_chart.selectAll('#lineNode')
@@ -209,20 +227,22 @@ function lineGraph(){
             .style("stroke-width", "1px")
             .style("opacity", "0");            
         // var line_active = document.getElementsByClassName('line ');
+
+        columns = [1,2,3,4]
       
         var mousePerLine = mouseG.selectAll('.mouse-per-line')
-            .data(data)
+            .data(columns)
             .enter()
             .append("g")
             .attr("class", "mouse-per-line");
       
         mousePerLine.append("circle")
-            .attr("r", 7)
+            .attr("r", 10)
             .style("stroke", function(d) {
                 return 'white';
             })
             .style("fill", "none")
-            .style("stroke-width", "1px")
+            .style("stroke-width", "0.5px")
             .style("opacity", "0");
       
         mousePerLine.append("text")
@@ -265,10 +285,11 @@ function lineGraph(){
                                 document.getElementsByClassName('line_deaths')
                             ]
                 d3.selectAll(".mouse-per-line")
-                    .attr("transform", function(d, i) {
+                    .attr("transform", function(d,i) {
                     var xDate = x.invert(mouse[0]),
                         bisect = d3.bisector(function(d) { return data[i].date; }).right;
-                        idx = bisect(data[i], xDate);                
+                        idx = bisect(d, xDate);   
+
                     
                     var beginning = 0,
                         end = lines[i][0].getTotalLength(),
@@ -298,41 +319,40 @@ function lineGraph(){
                         
                         return "translate(" + (mouse[0]) + "," + pos.y +")";
                     });
-
             });
 
     });
 
 
     function brushed() {
-    if (d3.event.sourceEvent && d3.event.sourceEvent.type === "mouse-over-effects") return; // ignore brush-by-zoom
-    var s = d3.event.selection || x2.range();
-    x.domain(s.map(x2.invert, x2));
-    Line_chart.select(".line").attr("d", line);
-    focus.select(".axis--x").call(xAxis);
-    svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
-        .scale(width / (s[1] - s[0]))
-        .translate(-s[0], 0));
+        if (d3.event.sourceEvent && d3.event.sourceEvent.type === "mouse-over-effects") return; // ignore brush-by-zoom
+        var s = d3.event.selection || x2.range();
+        x.domain(s.map(x2.invert, x2));
+        Line_chart.select(".line").attr("d", line);
+        focus.select(".axis--x").call(xAxis);
+        svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
+            .scale(width / (s[1] - s[0]))
+            .translate(-s[0], 0));
     }
 
     function zoomed() {
-    if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
-    var t = d3.event.transform;
-    x.domain(t.rescaleX(x2).domain());
-    Line_chart.select(".line").attr("d", line);
-    Line_chart.select(".line_recovered").attr("d", line_recovered);
-    Line_chart.select(".line_active").attr("d", line_active);
-    Line_chart.select(".line_deaths").attr("d", line_deaths);
-    focus.select(".axis--x").call(xAxis);
-    context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
+        if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
+        var t = d3.event.transform;
+        x.domain(t.rescaleX(x2).domain());
+        Line_chart.select(".line").attr("d", line);
+        Line_chart.select(".line_recovered").attr("d", line_recovered);
+        Line_chart.select(".line_active").attr("d", line_active);
+        Line_chart.select(".line_deaths").attr("d", line_deaths);
+        focus.select(".axis--x").call(xAxis);
+        context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
     }
 
     function type(d) {
-    d.date = parseDate(d.date);
-    d.confirmed = parseInt(d.confirmed);
-    d.recovered = parseInt(d.recovered);
-    d.active = parseInt(d.active);
-    d.deaths = parseInt(d.deaths);
+        d.date = parseDate(d.date);
+        d.confirmed = parseInt(d.confirmed);
+        d.recovered = parseInt(d.recovered);
+        d.active = parseInt(d.active);
+        d.deaths = parseInt(d.deaths);
     return d;
     }
 
