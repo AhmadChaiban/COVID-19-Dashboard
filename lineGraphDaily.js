@@ -102,31 +102,32 @@ function lineGraph(){
             .attr("class", "line")
             .attr("d", line)
             .attr('id','lineCursor')
-            .style('stroke','white');
+            .style('stroke','white')
+            .attr('visibility','visible');
 
         Line_chart.append("path")
             .datum(data)
             .attr("class", "line_recovered")
             .attr("d", line_recovered)
             .attr('id','lineCursor')
-            .style('stroke', '#EAD8BD');
+            .style('stroke', '#EAD8BD')
+            .attr('visibility','visible');
 
         Line_chart.append("path")
             .datum(data)
             .attr("class", "line_active")
             .attr("d", line_active)
             .attr('id','lineCursor')
-            .style('stroke','#5A8895');
+            .style('stroke','#5A8895')
+            .attr('visibility','visible');
 
         Line_chart.append("path")
             .datum(data)
             .attr("class", "line_deaths")
             .attr("d", line_deaths)
             .attr('id','lineCursor')
-            .style('stroke', '#0E77B4');
-
-
-        var columns = ['Confirmed', 'Active', 'Recovered', 'Deaths']
+            .style('stroke', '#0E77B4')
+            .attr('visibility','visible');
 
         // svg.append('rect')
         //     .style('stroke','white')
@@ -136,39 +137,6 @@ function lineGraph(){
         //     .attr('x', 10)
         //     .attr('y', 10)
         //     .attr("transform","translate(100,100)");
-
-        var line_classes = ['.line','.line_recovered', '.line_active','.line_deaths']
-
-        Line_chart.selectAll('#lineNode')
-            .append('g')
-            .data(columns)
-            .enter()
-            .append('text')
-            .text(function(d,i){
-                return columns[i];
-            })
-            .style('fill','white')
-            .style('font-size', '12px')
-            .attr('x',0.18*width)
-            .attr('y', function(d,i){
-                return 25*i + 35
-            }).on('click', function(d,i){
-                i = i+1
-                if(d3.selectAll(line_classes[i]).attr('visibility') == 'hidden'){
-                    d3.selectAll(line_classes[i]).attr('visibility', 'visible')
-                }
-                else{
-                    d3.selectAll(line_classes[i]).attr('visibility', 'hidden')
-                }
-            })
-            .on('mouseover', function(d,i){
-                i+=1
-                d3.selectAll(line_classes[i]).style('opacity',0.4)
-            })
-            .on('mouseout', function(d,i){
-                i+=1
-                d3.selectAll(line_classes[i]).style('opacity',0.7)
-            });
 
         var colors = ['white', '#5A8895', '#EAD8BD', '#0E77B4'];
 
@@ -216,6 +184,8 @@ function lineGraph(){
         //     // })
         //     .call(drag);
 
+        var line_classes = ['.line','.line_active', '.line_recovered','.line_deaths']
+
         var mouseG = svg.append("g")
         .attr("class", "mouse-over-effects")
         .attr('transform', 'translate(+80,+20)');
@@ -228,13 +198,22 @@ function lineGraph(){
             .style("opacity", "0");            
         // var line_active = document.getElementsByClassName('line ');
 
-        columns = [1,2,3,4]
+        var columns = []
+
+        for(i=0;i<line_classes.length;i++){
+            if(d3.selectAll(line_classes[i]).attr('visibility') == 'visible'){
+                columns.push(i)
+            }
+        }
       
         var mousePerLine = mouseG.selectAll('.mouse-per-line')
             .data(columns)
             .enter()
             .append("g")
-            .attr("class", "mouse-per-line");
+            .attr("class", "mouse-per-line")
+            .attr('id', function(d,i){
+                return 'mouseLine'+i;
+            });
       
         mousePerLine.append("circle")
             .attr("r", 10)
@@ -305,6 +284,17 @@ function lineGraph(){
                         else if (pos.x < mouse[0]) beginning = target;
                         else break; //position found
                     }
+
+                    var columns = []
+
+                    for(j=0;j<line_classes.length;j++){
+                        if(d3.selectAll(line_classes[j]).attr('visibility') == 'visible'){
+                            columns.push(j)
+                        }
+                    }
+
+
+                    if(String(d3.selectAll(line_classes[i]).attr('visibility')) == 'visible'){                    
                     
                     d3.select(this).select('text')
                         .text(y.invert(pos.y).toFixed(0) + ' ' + String(x.invert(pos.x)).split(' ')[1] + ' ' +String(x.invert(pos.x)).split(' ')[2])
@@ -318,8 +308,46 @@ function lineGraph(){
                         });  
                         
                         return "translate(" + (mouse[0]) + "," + pos.y +")";
+                    }
+                    
                     });
+
             });
+
+            var columns = ['Confirmed', 'Active', 'Recovered', 'Deaths']
+
+
+                mouseG.selectAll('#lineNode')
+                    .append('g')
+                    .data(columns)
+                    .enter()
+                    .append('text')
+                    .text(function(d,i){
+                        return columns[i];
+                    })
+                    .style('fill','white')
+                    .style('font-size', '12px')
+                    .attr('x',0.18*width)
+                    .attr('y', function(d,i){
+                        return 25*i + 35
+                    }).on('click', function(d,i){
+                        if(d3.selectAll(line_classes[i]).attr('visibility') == 'hidden'){
+                            d3.selectAll(line_classes[i]).attr('visibility', 'visible')
+                            d3.selectAll('#mouseLine'+i).attr('visibility','visible')
+                            
+                        }
+                        else{
+                            d3.selectAll(line_classes[i]).attr('visibility', 'hidden')
+                            d3.selectAll('#mouseLine'+i).attr('visibility','hidden')
+
+                        }
+                    })
+                    .on('mouseover', function(d,i){
+                        d3.selectAll(line_classes[i]).style('opacity',0.4)
+                    })
+                    .on('mouseout', function(d,i){
+                        d3.selectAll(line_classes[i]).style('opacity',0.7)
+                    });
 
     });
 
