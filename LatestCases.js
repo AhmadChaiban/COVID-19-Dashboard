@@ -1,17 +1,10 @@
-function latestCases(){
+function latestCases(country){
     // set the dimensions and margins of the graph
     var margin = {top: 50, right: 20, bottom: 70, left: 80},
     width = document.getElementById('latestCaseDiv').offsetWidth - margin.left - margin.right,
     height = document.getElementById('latestCaseDiv').offsetHeight - margin.top - margin.bottom;
 
     d3.selectAll("#latestCasesNode").selectAll('*').remove()
-
-    // set the ranges
-    var x = d3.scaleBand()
-        .range([0, width])
-        .padding(0.1);
-    var y = d3.scaleLinear()
-        .range([height, 0]);
         
     // append the svg object to the body of the page
     // append a 'group' element to 'svg'
@@ -24,7 +17,16 @@ function latestCases(){
         "translate(" + margin.left + "," + margin.top + ")");
 
     // get the data
-    d3.csv("cases_per_day_diff.csv", function(error, data) {
+    d3.csv(`./CountryData/cases_per_day_diff_${country}.csv`, function(error, data) {
+
+        // set the ranges
+        var x = d3.scaleBand()
+            .range([0, width])
+            .padding(0.1);
+        var y = d3.scaleLinear()
+            .range([height, 0]);
+
+        if (error) throw error;
 
         delete data['columns'];
 
@@ -34,11 +36,13 @@ function latestCases(){
 
         ordinals = ['confirmed', 'recovered', 'deaths', 'active']
 
-        if (error) throw error;
-
         // Scale the range of the data in the domains
-        x.domain(ordinals.map(function(d,i) { return ordinals[i]; }));
-        y.domain([0, d3.max(data, function(d,i) { return data[i]; })]);
+        x.domain(ordinals.map(function(d,i) { 
+            return ordinals[i]; 
+        }));
+        y.domain([0, d3.max(data, function(d,i) { 
+            return data[i]; 
+        })]);
 
         var colors = ['#EAD8BD', '#5A8895', '#9ECAE1', '#0E77B4'];
 
@@ -50,8 +54,12 @@ function latestCases(){
         .attr("x", function(d,i) { return x(ordinals[i]) + 0.04376*width; })
         .attr("width", x.bandwidth()/4)
         .attr('rx', 10)
-        .attr("y", function(d,i) { return y(data[i]); })
-        .attr("height", function(d,i) { return height - y(data[i]); })
+        .attr("y", function(d,i) { 
+            return Math.abs(y(data[i])); 
+        })
+        .attr("height", function(d,i) { 
+            return Math.abs(height - y(data[i])); 
+        })
         .style('fill', function(d,i){
             return colors[i]
         });

@@ -122,13 +122,24 @@ function heatMap(){
                 .style("stroke","white")
                 .style("stroke-width",3);
             })
-            .on('click',function(d){
+            .on('click',function(d,i){
                 tip.show(d);
     
                 d3.select(this)
-                    .style("opacity", 0.8)
+                    .style("opacity", 0.4)
                     .style("stroke","white")
-                    .style("stroke-width",3);
+                    .style("stroke-width",3)
+                    .transition()
+                    .duration(200)
+                    .style('opacity', 0.8);
+
+                    console.log(d.properties.name)
+
+                    countrySpecificHist(d.properties.name);
+                    lineGraph(d.properties.name);
+                    // latestCases(d.properties.name);
+
+
             })
             .on('mouseout', function(d){
             tip.hide(d);

@@ -1,12 +1,10 @@
 
 
 function countrySpecificHist(country){
-    
+
     var parseDate = d3.timeParse("%Y-%m-%d");
 
-    if(country == 'all'){
-
-        d3.csv("cases_per_day_diff.csv", function(error ,data_entry) {
+        d3.csv(`./CountryData/cases_per_day_diff_${country}.csv`, function(error ,data_entry) {
 
         delete data_entry['columns'];
 
@@ -35,7 +33,8 @@ function countrySpecificHist(country){
             radius = (Math.min(width, height) / 2) - 10,
             node
 
-        d3.selectAll('#histogramNode').selectAll('*').remove()
+        d3.selectAll('#histogramNode').selectAll('*').remove()        
+
         var svg = d3.select('#histogramNode')
                     .attr('width', width + margin.left + margin.right)
                     .attr('height', height + margin.left + margin.right )
@@ -106,7 +105,7 @@ function countrySpecificHist(country){
                     .style('opacity', 0.7)
                     .attr('width', xBand.bandwidth()*0.9)
                     .attr('height', function(d){
-                    return height - yScale(d.value)
+                    return Math.abs(height - yScale(d.value))
                     })
                     .on('mouseover', function(d,i){
                         d3.select(this).style('opacity',0.4);
@@ -225,7 +224,7 @@ function countrySpecificHist(country){
             })
             .attr('width', xBand.bandwidth()*0.9)
             .attr('height', function(d){
-            return height - yScale(d.value)
+            return Math.abs(height - yScale(d.value))
             })
             .style('fill','0E77B4')
             .style('opacity',0.7)
@@ -358,7 +357,6 @@ function countrySpecificHist(country){
 
     });
 
-    }
     function type(d) {
         d.date = parseDate(d.date);
         d.confirmed = + parseInt(d.confirmed);

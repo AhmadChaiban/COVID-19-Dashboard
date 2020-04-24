@@ -38,7 +38,7 @@ fs.readFile('./country_id_names.tsv', async (err, name_data) => {
                     // console.log(`${date} active cases: ${confirmed - recovered - deaths}`);
                        { 
                         case_info_list.push([date, confirmed, recovered, deaths, confirmed - recovered - deaths]);
-                        all_country_cases_per_day.push([date,confirmed,recovered,deaths, confirmed-recovered-deaths]);
+                        all_country_cases_per_day.push([date,confirmed,recovered,deaths, confirmed-recovered-deaths, name_data_instance[1]. replace(',', '')]);
                        }
                     );
                     last_row = case_info_list[case_info_list.length-1]
