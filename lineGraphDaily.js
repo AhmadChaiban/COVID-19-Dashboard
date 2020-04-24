@@ -218,7 +218,7 @@ function lineGraph(country){
             .attr('id', function(d,i){
                 return 'mouseLine'+i;
             });
-      
+
         mousePerLine.append("circle")
             .attr("r", 10)
             .style("stroke", function(d) {
@@ -297,7 +297,6 @@ function lineGraph(country){
                         }
                     }
 
-
                     if(String(d3.selectAll(line_classes[i]).attr('visibility')) == 'visible'){                    
                     
                     d3.select(this).select('text')
@@ -314,7 +313,7 @@ function lineGraph(country){
                         return "translate(" + (mouse[0]) + "," + pos.y +")";
                     }
                     
-                    });
+                    })
 
             });
 
@@ -353,7 +352,93 @@ function lineGraph(country){
                         d3.selectAll(line_classes[i]).style('opacity',1)
                     });
 
+                var drag = d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended);
+                
+                function dragstarted(d) {
+                    d3.selectAll('.line_indicator').style("stroke-width", 2);
+                  }
+                
+                  function dragged(d) {
+
+                    var mouse = d3.mouse(this);
+                            d3.select(".mouse-line")
+                                .attr("d", function() {
+                                var d = "M" + mouse[0] + "," + height;
+                                d += " " + mouse[0] + "," + 0;
+                                return d;
+                                });
+                
+                    d3.selectAll(".mouse-per-line")
+                            .attr("transform", function(d,i) {
+                            var xDate = x.invert(mouse[0]),
+                                bisect = d3.bisector(function(d) { return data[i].date; }).right;
+                                idx = bisect(d, xDate);   
+        
+                            
+                            var beginning = 0,
+                                end = lines[i][0].getTotalLength(),
+                                target = null;
+                
+                            while (true){
+                                target = Math.floor((beginning + end) / 2);
+                                pos = lines[i][0].getPointAtLength(target);
+                                if ((target === end || target === beginning) && pos.x !== mouse[0]) {
+                                    break;
+                                }
+                                if (pos.x > mouse[0])      end = target;
+                                else if (pos.x < mouse[0]) beginning = target;
+                                else break; //position found
+                            }
+        
+                            var columns = []
+        
+                            for(j=0;j<line_classes.length;j++){
+                                if(d3.selectAll(line_classes[j]).attr('visibility') == 'visible'){
+                                    columns.push(j)
+                                }
+                            }
+        
+                            if(String(d3.selectAll(line_classes[i]).attr('visibility')) == 'visible'){                    
+                            
+                            d3.select(this).select('text')
+                                .text(y.invert(pos.y).toFixed(0) + ' ' + String(x.invert(pos.x)).split(' ')[1] + ' ' +String(x.invert(pos.x)).split(' ')[2])
+                                .style('fill','white')
+                                .attr('transform', function(d){
+                                    // if (i%2 == 0)
+                                    //     return 'translate(-140,0)'
+                                    // else
+                                    //     return 'translate(0,0)'
+                                    return 'translate(-140,0)'
+                                });  
+                                
+                                return "translate(" + (mouse[0]) + "," + pos.y +")";
+                            }
+                                    
+                        })
+                
+                    // d3.select(this).raise().attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+                  }
+                
+                  function dragended(d) {
+                    d3.selectAll('.line_indicator').attr("stroke", 'white');
+                  }
+                  
+                  svg.call(drag)
+
+
     });
+
+    var lines = [
+        document.getElementsByClassName('line'),
+        document.getElementsByClassName('line_active'),
+        document.getElementsByClassName('line_recovered'),
+        document.getElementsByClassName('line_deaths')
+    ];
+
+    var line_classes = ['.line','.line_active', '.line_recovered','.line_deaths'];
 
 
     function brushed() {
@@ -387,27 +472,5 @@ function lineGraph(country){
         d.deaths = parseInt(d.deaths);
     return d;
     }
-
-var drag = d3.drag()
-    .on("start", dragstarted)
-    .on("drag", dragged)
-    .on("end", dragended);
-
-function dragstarted(d) {
-    d3.selectAll('.line_indicator').style("stroke", "white");
-  }
-
-  function dragged(d) {
-
-    d3.selectAll('.line_indicator')
-                    .attr('transform', 'translate(' + d3.event.x + ',' + 0 + ')')
-
-    // d3.select(this).raise().attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
-  }
-
-  function dragended(d) {
-    d3.selectAll('.line_indicator').attr("stroke", 'white');
-  }
-
 
 }
