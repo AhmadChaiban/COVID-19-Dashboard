@@ -144,7 +144,7 @@ function countrySpecificHist(country){
                     })
                     .attr('width', xBand.bandwidth()*0.9)
                     .attr('height', function(d){
-                    return height - yScale(d.value)
+                    return height - yScale(d.value_active)
                     })
                     .style('fill','0E77B4')
                     .style('opacity',1)
@@ -186,7 +186,7 @@ function countrySpecificHist(country){
             })
             .attr('width', xBand.bandwidth()*0.9)
             .attr('height', function(d){
-            return height - yScale(d.value)
+                return height - yScale(d.value_rec)
             })
             .style('fill','white')
             .style('opacity',1)
@@ -227,7 +227,7 @@ function countrySpecificHist(country){
             })
             .attr('width', xBand.bandwidth()*0.9)
             .attr('height', function(d){
-            return Math.abs(height - yScale(d.value))
+            return Math.abs(height - yScale(d.value_dead))
             })
             .style('fill','black')
             .style('opacity',1)
