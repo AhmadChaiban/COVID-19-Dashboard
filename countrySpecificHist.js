@@ -102,7 +102,7 @@ function countrySpecificHist(country){
                     return yScale(parseInt(d.value))
                     })
                     .style('fill', 'EAD8BD')
-                    .style('opacity', 0.7)
+                    .style('opacity', 1)
                     .attr('width', xBand.bandwidth()*0.9)
                     .attr('height', function(d){
                     return Math.abs(height - yScale(d.value))
@@ -115,14 +115,15 @@ function countrySpecificHist(country){
                                 new_date = String(ordinals[i]).split(' ')
                                 return `(${data[i]['value']} , ${new_date[1]} ${new_date[2]})`;
                             })
-                            .style('fill','white')
+                            .style('stroke','black')
+                            .style('stroke-width', 1.5)
                             .attr('x', xScale(i) - 50*xBand.bandwidth()*0.9/2)
                             .attr('y', yScale(parseInt(d.value)))
                             .attr('class','detailText');
                     })
                     .on('mouseout', function(d,i){
                         d3.selectAll('.detailText').remove()
-                        d3.select(this).style('opacity',0.7)
+                        d3.select(this).style('opacity',1)
                     })
                     .attr('visibility', 'visible');
 
@@ -145,8 +146,8 @@ function countrySpecificHist(country){
                     .attr('height', function(d){
                     return height - yScale(d.value)
                     })
-                    .style('fill','5A8895')
-                    .style('opacity',0.7)
+                    .style('fill','0E77B4')
+                    .style('opacity',1)
                     .on('mouseover', function(d,i){
                         d3.select(this).style('opacity',0.4);
                         svg.append('g')
@@ -155,14 +156,15 @@ function countrySpecificHist(country){
                                 new_date = String(ordinals[i]).split(' ')
                                 return `(${data[i].value_active} , ${new_date[1]} ${new_date[2]})`;
                             })
-                            .style('fill','white')
+                            .style('stroke','black')
+                            .style('stroke-width', 1.5)
                             .attr('x', xScale(i) - 50*xBand.bandwidth()*0.9/2)
                             .attr('y', yScale(parseInt(d.value_active)))
                             .attr('class','detailText');
                     })
                     .on('mouseout', function(d,i){
                         d3.selectAll('.detailText').remove()
-                        d3.select(this).style('opacity',0.7)
+                        d3.select(this).style('opacity',1)
                     })
                     .attr('visibility', 'visible');
 
@@ -186,8 +188,8 @@ function countrySpecificHist(country){
             .attr('height', function(d){
             return height - yScale(d.value)
             })
-            .style('fill','#9ECAE1')
-            .style('opacity',0.7)
+            .style('fill','white')
+            .style('opacity',1)
             .on('mouseover', function(d,i){
                 d3.select(this).style('opacity',0.4);
                 svg.append('g')
@@ -196,14 +198,15 @@ function countrySpecificHist(country){
                         new_date = String(ordinals[i]).split(' ')
                         return `(${data[i].value_rec} , ${new_date[1]} ${new_date[2]})`;
                     })
-                    .style('fill','white')
+                    .style('stroke','black')
+                    .style('stroke-width', 1.5)
                     .attr('x', xScale(i) - 50*xBand.bandwidth()*0.9/2)
                     .attr('y', yScale(parseInt(d.value_rec)))
                     .attr('class','detailText');
             })
             .on('mouseout', function(d,i){
                 d3.selectAll('.detailText').remove()
-                d3.select(this).style('opacity',0.7)
+                d3.select(this).style('opacity',1)
             })
             .attr('visibility', 'visible');
 
@@ -226,8 +229,8 @@ function countrySpecificHist(country){
             .attr('height', function(d){
             return Math.abs(height - yScale(d.value))
             })
-            .style('fill','0E77B4')
-            .style('opacity',0.7)
+            .style('fill','black')
+            .style('opacity',1)
             .on('mouseover', function(d,i){
                 d3.select(this).style('opacity',0.4);
                 svg.append('g')
@@ -236,14 +239,15 @@ function countrySpecificHist(country){
                         new_date = String(ordinals[i]).split(' ')
                         return `(${data[i].value_dead} , ${new_date[1]} ${new_date[2]})`;
                     })
-                    .style('fill','white')
+                    .style('stroke','red')
+                    .style('stroke-width', 1)
                     .attr('x', xScale(i) - 50*xBand.bandwidth()*0.9/2)
                     .attr('y', yScale(parseInt(d.value_dead)))
                     .attr('class','detailText');
             })
             .on('mouseout', function(d,i){
                 d3.selectAll('.detailText').remove()
-                d3.select(this).style('opacity',0.7)
+                d3.select(this).style('opacity',1)
             })
             .attr('visibility', 'visible');
 
@@ -306,10 +310,10 @@ function countrySpecificHist(country){
             })
             .on('mouseout', function(d,i){
                 i+=1
-                d3.selectAll('#bar'+i).style('opacity',0.7)
+                d3.selectAll('#bar'+i).style('opacity',1)
             });
 
-        var colors = ['#EAD8BD', '#5A8895', '#9ECAE1', '#0E77B4'];
+        var colors = ['#EAD8BD', '#0E77B4', 'white', 'black'];
 
         
         svg.selectAll('#histogramNode')

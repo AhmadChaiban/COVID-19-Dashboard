@@ -102,7 +102,8 @@ function lineGraph(country){
             .attr("class", "line")
             .attr("d", line)
             .attr('id','lineCursor')
-            .style('stroke','white')
+            .style('stroke','EAD8BD')
+            .style('stroke-width', 3)
             .attr('visibility','visible');
 
         Line_chart.append("path")
@@ -110,7 +111,8 @@ function lineGraph(country){
             .attr("class", "line_recovered")
             .attr("d", line_recovered)
             .attr('id','lineCursor')
-            .style('stroke', '#EAD8BD')
+            .style('stroke', 'white')
+            .style('stroke-width', 3)
             .attr('visibility','visible');
 
         Line_chart.append("path")
@@ -118,7 +120,8 @@ function lineGraph(country){
             .attr("class", "line_active")
             .attr("d", line_active)
             .attr('id','lineCursor')
-            .style('stroke','#5A8895')
+            .style('stroke','0E77B4')
+            .style('stroke-width', 3)
             .attr('visibility','visible');
 
         Line_chart.append("path")
@@ -126,7 +129,8 @@ function lineGraph(country){
             .attr("class", "line_deaths")
             .attr("d", line_deaths)
             .attr('id','lineCursor')
-            .style('stroke', '#0E77B4')
+            .style('stroke', 'black')
+            .style('stroke-width', 3)
             .attr('visibility','visible');
 
         // svg.append('rect')
@@ -138,7 +142,7 @@ function lineGraph(country){
         //     .attr('y', 10)
         //     .attr("transform","translate(100,100)");
 
-        var colors = ['white', '#5A8895', '#EAD8BD', '#0E77B4'];
+        var colors = ['#EAD8BD', '#0E77B4', 'white', 'black'];
 
         
         Line_chart.selectAll('#lineNode')
@@ -346,7 +350,7 @@ function lineGraph(country){
                         d3.selectAll(line_classes[i]).style('opacity',0.4)
                     })
                     .on('mouseout', function(d,i){
-                        d3.selectAll(line_classes[i]).style('opacity',0.7)
+                        d3.selectAll(line_classes[i]).style('opacity',1)
                     });
 
     });
