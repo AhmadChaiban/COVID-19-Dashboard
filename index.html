@@ -83,7 +83,8 @@
         window.addEventListener("resize", function(event){
             var new_w = window.innerWidth;
             var new_h = window.innerHeight;
-            if( Math.abs(w*h - new_w*new_h) > 100){
+
+            if( Math.abs(w*h - new_w*new_h) > 100000){
                 heatMap();
                 worldRace();
                 top6();
