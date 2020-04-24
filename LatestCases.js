@@ -1,6 +1,8 @@
 function latestCases(country){
+
+    var document_width = document.getElementById('latestCaseDiv').offsetWidth
     // set the dimensions and margins of the graph
-    var margin = {top: 50, right: 20, bottom: 70, left: 80},
+    var margin = {top: 50, right: 20, bottom: 70, left: 0.10152284*document_width},
     width = document.getElementById('latestCaseDiv').offsetWidth - margin.left - margin.right,
     height = document.getElementById('latestCaseDiv').offsetHeight - margin.top - margin.bottom;
 
