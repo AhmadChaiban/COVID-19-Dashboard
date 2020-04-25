@@ -53,9 +53,9 @@ function heatMap(){
     var svg = d3.select("#node")
                 .attr("width", width)
                 .attr("height", height)
+                .call(zoom)
                 .append('g')
                 .attr('class', 'map')
-                .call(zoom)
                 .append("g").attr('transform','translate(50,50)');
               
     // function zoomFn() {
