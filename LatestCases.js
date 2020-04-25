@@ -43,8 +43,10 @@ function latestCases(country){
             return ordinals[i]; 
         }));
         y.domain([0, d3.max(data, function(d,i) { 
-            return data[i]; 
+            return Math.max(data[i], data[i+1]); 
         })]);
+
+        console.log(data)
 
         var colors = ['#EAD8BD', '#5A8895', '#9ECAE1', '#0E77B4'];
 
@@ -57,10 +59,10 @@ function latestCases(country){
         .attr("width", x.bandwidth()/4)
         .attr('rx', 10)
         .attr("y", function(d,i) { 
-            return Math.abs(y(data[i])); 
+            return y(data[i]); 
         })
         .attr("height", function(d,i) { 
-            return Math.abs(height - y(data[i])); 
+            return height - y(data[i]); 
         })
         .style('fill', function(d,i){
             return colors[i]
