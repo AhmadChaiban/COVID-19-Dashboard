@@ -19,12 +19,9 @@ grouped_agg_df = dataframe.sort_values(by='date').groupby(
 
 grouped_agg_df.to_csv('./CountryData/cases_per_day_agg_all.csv')
 
-for i in range(len(grouped_agg_df)-1):
-    for j in range(0,i+1):
-        grouped_agg_df['confirmed'][i+1] = int(grouped_agg_df['confirmed'][i+1]) - int(grouped_agg_df['confirmed'][j])
-        grouped_agg_df['recovered'][i+1] = grouped_agg_df['recovered'][i+1] - grouped_agg_df['recovered'][j]     
-        grouped_agg_df['deaths'][i+1] = grouped_agg_df['deaths'][i+1] - grouped_agg_df['deaths'][j]     
-        grouped_agg_df['active'][i+1] = grouped_agg_df['active'][i+1] - grouped_agg_df['active'][j]     
+difference = grouped_agg_df.diff()
+difference.iloc[0] = grouped_agg_df.iloc[0]
+grouped_agg_df = difference.astype('int')   
 
 grouped_agg_df.to_csv('./CountryData/cases_per_day_diff_all.csv')
 
@@ -41,11 +38,8 @@ for idx in range(len(countries)):
         }
     )
     grouped_agg_df.to_csv(f'./CountryData/cases_per_day_agg_{countries[idx].replace("*","")}.csv')
-    for i in range(len(grouped_agg_df)-1):
-        for j in range(0,i+1):
-            grouped_agg_df['confirmed'][i+1] = int(grouped_agg_df['confirmed'][i+1]) - int(grouped_agg_df['confirmed'][j])
-            grouped_agg_df['recovered'][i+1] = grouped_agg_df['recovered'][i+1] - grouped_agg_df['recovered'][j]     
-            grouped_agg_df['deaths'][i+1] = grouped_agg_df['deaths'][i+1] - grouped_agg_df['deaths'][j]     
-            grouped_agg_df['active'][i+1] = grouped_agg_df['active'][i+1] - grouped_agg_df['active'][j]    
+    difference = grouped_agg_df.diff()
+    difference.iloc[0] = grouped_agg_df.iloc[0]
+    grouped_agg_df = difference.astype('int')     
     grouped_agg_df.to_csv(f'./CountryData/cases_per_day_diff_{countries[idx].replace("*","")}.csv')
     
