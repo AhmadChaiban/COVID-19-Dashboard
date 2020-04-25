@@ -18,7 +18,7 @@ function worldRace(){
         //Using this selection to update the SVG everytime the function is called
     svg.selectAll("*").remove();
 
-    d3.tsv("world_covid.tsv", function(data) {
+    d3.tsv("../world_covid.tsv", function(data) {
         
         var aggregation = aggregate(data)
 

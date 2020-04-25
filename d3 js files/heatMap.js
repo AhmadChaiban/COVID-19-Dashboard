@@ -71,8 +71,8 @@ function heatMap(){
     svg.call(tip);
 
     queue()
-        .defer(d3.json, "world_countries.json")
-        .defer(d3.tsv, "world_covid.tsv")
+        .defer(d3.json, "../world_countries.json")
+        .defer(d3.tsv, "../world_covid.tsv")
         .await(ready);
 
     function ready(error, data, population) {

@@ -19,7 +19,7 @@ function latestCases(country){
         "translate(" + margin.left + "," + margin.top + ")");
 
     // get the data
-    d3.csv(`./CountryData/cases_per_day_diff_${country}.csv`, function(error, data) {
+    d3.csv(`../CountryData/cases_per_day_diff_${country}.csv`, function(error, data) {
 
         // set the ranges
         var x = d3.scaleBand()

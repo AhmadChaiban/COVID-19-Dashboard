@@ -76,7 +76,7 @@ function lineGraph(country){
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .call(zoom);
 
-    d3.csv(`./CountryData/cases_per_day_agg_${country}.csv`, type, function (error, data) {
+    d3.csv(`../CountryData/cases_per_day_agg_${country}.csv`, type, function (error, data) {
     if (error) throw error;
     x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function (d) { return parseInt(d.confirmed); })]);

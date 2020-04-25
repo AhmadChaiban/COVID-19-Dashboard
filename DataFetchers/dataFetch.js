@@ -11,7 +11,7 @@ var data_final = 'id\tname\tconfirmed\trecovered\tdeaths\tactive\t';
 //     );
 //   });
   
-fs.readFile('./country_id_names.tsv', async (err, name_data) => {
+fs.readFile('../country_id_names.tsv', async (err, name_data) => {
     if (err) {
         console.error(err)
         return
@@ -47,8 +47,8 @@ fs.readFile('./country_id_names.tsv', async (err, name_data) => {
                 // console.log(case_info_list[case_info_list.length-1][4]);
             }
 
-            fs.writeFileSync('world_covid.tsv', data_final);
-            fs.writeFileSync('cases_per_day.csv', all_country_cases_per_day.join('\n'));
+            fs.writeFileSync('../world_covid.tsv', data_final);
+            fs.writeFileSync('../cases_per_day.csv', all_country_cases_per_day.join('\n'));
 
         });
 })

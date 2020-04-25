@@ -4,7 +4,7 @@ function countrySpecificHist(country){
 
     var parseDate = d3.timeParse("%Y-%m-%d");
 
-        d3.csv(`./CountryData/cases_per_day_diff_${country}.csv`, function(error ,data_entry) {
+        d3.csv(`../CountryData/cases_per_day_diff_${country}.csv`, function(error ,data_entry) {
 
         delete data_entry['columns'];
 

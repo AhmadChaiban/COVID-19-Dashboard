@@ -20,7 +20,7 @@ function top6(){
         //Using this selection to update the SVG everytime the function is called
     svgRace.selectAll("*").remove();
 
-    d3.tsv("world_covid.tsv", function(data) {
+    d3.tsv("../world_covid.tsv", function(data) {
         var sorted_data = data.sort(sortByProperty('confirmed'));
         var sorted_3_first = [sorted_data[0], sorted_data[1], sorted_data[2]];
         var sorted_3_second = [sorted_data[3], sorted_data[4], sorted_data[5]];
