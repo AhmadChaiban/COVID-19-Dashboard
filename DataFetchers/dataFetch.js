@@ -2,8 +2,6 @@ var fs = require('fs');
 const fetch = require("node-fetch");
 const neatCsv = require('neat-csv');
 var cmd=require('node-cmd');
-var data_final = 'id\tname\tconfirmed\trecovered\tdeaths\tactive\t';
-
 // fetch("https://pomber.github.io/covid19/timeseries.json")
 //   .then(response => response.json())
 //   .then(data => {
@@ -13,6 +11,7 @@ var data_final = 'id\tname\tconfirmed\trecovered\tdeaths\tactive\t';
 //   });
 
 function getMainData(){
+var data_final = 'id\tname\tconfirmed\trecovered\tdeaths\tactive\t';
   
 fs.readFile('../country_id_names.tsv', async (err, name_data) => {
     if (err) {
@@ -59,5 +58,5 @@ fs.readFile('../country_id_names.tsv', async (err, name_data) => {
 })
 }
 
-setInterval(getMainData, 20000);
+setInterval(getMainData, 100000);
 
