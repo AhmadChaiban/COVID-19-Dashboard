@@ -137,6 +137,9 @@ function heatMap(){
                     lineGraph(d.properties.name);
                     // latestCases(d.properties.name);
 
+                    d3.selectAll('.arrow').attr('visibility','visible')
+
+
 
             })
             .on('mouseout', function(d){
@@ -153,5 +156,25 @@ function heatMap(){
         // .datum(topojson.mesh(data.features, function(a, b) { return a !== b; }))
         .attr("class", "names")
         .attr("d", path);
+
+    var myimage = svg.append('image')
+        .attr('xlink:href', './images/backArrow.png')
+        .attr('class', 'arrow')
+        .attr('width', 40)
+        .attr('height', 200)
+        .attr('x', 0)
+        .attr('y', 0.9*height)
+        .on('mouseover', function(d,i){
+            d3.select(this).style('opacity', 0.6)
+        })
+        .on('mouseout', function(d,i){
+            d3.select(this).style('opacity', 1)
+        })
+        .on('click', function(d,i){
+            lineGraph('all')
+            countrySpecificHist('all')
+            d3.select(this).attr('visibility','hidden')
+        })
+        .attr('visibility','hidden')
     }
 }
