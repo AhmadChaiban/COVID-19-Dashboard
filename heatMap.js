@@ -122,7 +122,7 @@ function heatMap(){
                 .style("stroke","white")
                 .style("stroke-width",3);
             })
-            .on('click',function(d,i){
+            .on('click',function(d){
                 tip.show(d);
     
                 d3.select(this)
@@ -132,8 +132,6 @@ function heatMap(){
                     .transition()
                     .duration(200)
                     .style('opacity', 0.8);
-
-                    console.log(d.properties.name)
 
                     countrySpecificHist(d.properties.name);
                     lineGraph(d.properties.name);

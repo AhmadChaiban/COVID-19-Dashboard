@@ -50,8 +50,18 @@
       // Returns a tip
       tip.show = function() {
 
+        console.log(window.innerWidth)
+
+        // if(window.innerWidth < window.innerHeight){
+        //   console.log('yes')
+        //   var y = d3.event.y*2.1;
+        // }
+        // else{
+        //   var y = d3.event.y +10;
+        // }
+
         var x = d3.event.x - 50;
-        var y = d3.event.y+ 10;
+        var y = d3.event.y + 10;
         var args = Array.prototype.slice.call(arguments)
         if (args[args.length - 1] instanceof SVGElement) target = args.pop()
   
@@ -74,8 +84,8 @@
         nodel.classed(dir, true)
           // .style('top', (coords.top + poffset[0]) + scrollTop + 'px')
           // .style('left', (coords.left + poffset[1]) + scrollLeft + 'px')
-          .style('top', (y + 'px'))
-          .style('left', (x + 'px'));
+          .style('top', ((y+scrollTop) + 'px'))
+          .style('left', ((x+scrollLeft) + 'px'));
 
           // console.log(x)
           // console.log(y)
