@@ -80,6 +80,42 @@ function countrySpecificHist(country){
         )
         .selectAll('text').style('fill','white').attr('transform', `translate(0,10) rotate(-45)`)
 
+        var drag = d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended);
+
+        // var fakeClick = function(svg) {
+        //     var event = document.createEvent('MouseEvents');
+        //     event.initMouseEvent('click');
+        //     svg.dispatchEvent(event);
+        // };
+
+        function dragstarted(d) {
+            
+          }
+        
+          function dragged(d) {
+            d3.select(this).style('opacity',0.4);
+                        svg.append('g')
+                            .append('text')
+                            .text(function(d){
+                                new_date = String(ordinals[i]).split(' ')
+                                return `(${data[i]['value']} , ${new_date[1]} ${new_date[2]})`;
+                            })
+                            .style('stroke','black')
+                            .style('stroke-width', 1.5)
+                            .attr('x', xScale(i) - 50*xBand.bandwidth()*0.9/2)
+                            .attr('y', yScale(parseInt(d.value)))
+                            .attr('class','detailText');
+                            
+          }
+
+          
+          function dragended(d) {
+
+          }
+
         // y axis
         let yAxis = svg.append('g')
                     .attr('class', 'y axis')
@@ -121,11 +157,26 @@ function countrySpecificHist(country){
                             .attr('y', yScale(parseInt(d.value)))
                             .attr('class','detailText');
                     })
+                    .on('click', function(d,i){
+                        d3.select(this).style('opacity',0.4);
+                        svg.append('g')
+                            .append('text')
+                            .text(function(d){
+                                new_date = String(ordinals[i]).split(' ')
+                                return `(${data[i]['value']} , ${new_date[1]} ${new_date[2]})`;
+                            })
+                            .style('stroke','black')
+                            .style('stroke-width', 1.5)
+                            .attr('x', xScale(i) - 50*xBand.bandwidth()*0.9/2)
+                            .attr('y', yScale(parseInt(d.value)))
+                            .attr('class','detailText');
+                    })
                     .on('mouseout', function(d,i){
                         d3.selectAll('.detailText').remove()
                         d3.select(this).style('opacity',1)
                     })
-                    .attr('visibility', 'visible');
+                    // .call(drag)
+                    .attr('visibility', 'visible')
 
         
         let bars2 = svg.append('g')
@@ -166,7 +217,8 @@ function countrySpecificHist(country){
                         d3.selectAll('.detailText').remove()
                         d3.select(this).style('opacity',1)
                     })
-                    .attr('visibility', 'visible');
+                    .attr('visibility', 'visible')
+                    // .call(drag);                    ;
 
 
 
