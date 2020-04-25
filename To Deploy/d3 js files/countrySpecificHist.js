@@ -58,10 +58,10 @@ function countrySpecificHist(country){
         let xBand = d3.scaleBand().domain(d3.range(-1, ordinals.length)).range([0, width])
 
         // zoomable rect
-        // svg.append('rect')
-        // .attr('class', 'zoom-panel')
-        // .attr('width', width)
-        // .attr('height', height)
+        svg.append('rect')
+        .attr('class', 'zoom-panel')
+        .attr('width', width)
+        .attr('height', height)
 
         // x axis
         let xAxis = svg.append('g')
