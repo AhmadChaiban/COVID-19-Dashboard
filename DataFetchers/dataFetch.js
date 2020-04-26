@@ -58,5 +58,5 @@ fs.readFile('../country_id_names.tsv', async (err, name_data) => {
 })
 }
 
-setInterval(getMainData, 100000);
-
+// setInterval(getMainData, 100000);
+getMainData();
