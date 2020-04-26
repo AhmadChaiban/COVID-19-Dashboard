@@ -13,13 +13,13 @@ var cmd=require('node-cmd');
 function getMainData(){
 var data_final = 'id\tname\tconfirmed\trecovered\tdeaths\tactive\t';
   
-fs.readFile('../country_id_names.tsv', async (err, name_data) => {
+fs.readFileSync('../country_id_names.tsv', (err, name_data) => {
     if (err) {
         console.error(err)
         return
     }
 
-    name_data = await neatCsv(name_data)
+    name_data = neatCsv(name_data)
 
     fetch("https://pomber.github.io/covid19/timeseries.json")
         .then(response => response.json())
