@@ -17,7 +17,7 @@ It is composed of 7 graphs:
 6. Confirmed/Active/Recovered/Deaths per day (Top right histogram)
 7. Total number of Confirmed/Active/Recovered/Deaths aggregated per day (Bottom right Line Graph)
 
-<p align="center"><img src="./images/dashboard.png" width="100%"/></p>
+<p align="center"><img src="./images/dashboard.png" width="98%"/></p>
 
 <!-- ![Dashboard](./images/dashboard.png | width=100) -->
 
