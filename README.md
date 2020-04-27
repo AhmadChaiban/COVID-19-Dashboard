@@ -17,7 +17,7 @@ It is composed of 7 graphs:
 6. Confirmed/Active/Recovered/Deaths per day (Top right histogram)
 7. Total number of Confirmed/Active/Recovered/Deaths aggregated per day (Bottom right Line Graph)
 
-<center><img src="./images/dashboard.png" width="100%" /></center>
+<p align="center"><img src="./images/dashboard.png" width="100%" /></p>
 
 <!-- ![Dashboard](./images/dashboard.png | width=100) -->
 
@@ -25,15 +25,15 @@ It is composed of 7 graphs:
 
 The dashboard has some static functionalities (which will be changed in the future) and some other dynamic ones. The user can zoom in and highlight on the main world map accordingly:
 
-<center><img src="./images/lebanon.png" width="80%" /></center>
+<p align="center"><img src="./images/lebanon.png" width="80%" /></p>
 <br></br>
 <!-- ![Lebanon](./images/Lebanon.png) -->
 
 This can either be done by tapping (on mobile), or hovering with your mouse. Moreover, upon clicking/tapping on any country, graphs number 6 and 7 can be visualized by country: 
 
-<center><img src="./images/HistPerCountry.png" width="60%"/></center>
+<p align="center"><img src="./images/HistPerCountry.png" width="60%"/></p>
 
-<center><img src="./images/LinePerDay.png" width="60%"/></center>
+<p align="center"><img src="./images/LinePerDay.png" width="60%"/></p>
 
 <br></br>
 
@@ -44,7 +44,7 @@ This can either be done by tapping (on mobile), or hovering with your mouse. Mor
 
 Here the user can also toggle the lines/Bars they want to see by clicking on the Legend Text. 
 
-<center><img src="./images/LegendToggle.gif" width="60%"/></center>
+<p align="center"><img src="./images/LegendToggle.gif" width="60%"/></p>
 
 <br></br>
 
@@ -52,7 +52,7 @@ Here the user can also toggle the lines/Bars they want to see by clicking on the
 
 Tapping/clicking the reset button will allow the user to return to the worldwide view of the graphs 
 
-<center><img src="./images/HeatMapReset.gif" width="80%"/></center>
+<p align="center"><img src="./images/HeatMapReset.gif" width="80%"/></p>
 
 <!-- ![resetpress](./images/HeatMapReset.gif) -->
 
@@ -60,7 +60,7 @@ Tapping/clicking the reset button will allow the user to return to the worldwide
 
 The following is a mobile preview of the dashboard. It has all the same functionalities as the desktop version. 
 
-<center><img src="./images/mobileView.gif" width="30%"/></center>
+<p align="center"><img src="./images/mobileView.gif" width="30%"/></p>
 
 
 
