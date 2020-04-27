@@ -11,21 +11,14 @@ var cmd=require('node-cmd');
 //   });
 
 function getMainData(){
-var data_final = 'id\tname\tconfirmed\trecovered\tdeaths\tactive\t';
-  
-fs.readFileSync('../country_id_names.tsv', (err, name_data) => {
-    if (err) {
-        console.error(err)
-        return
-    }
-
+    var data_final = 'id\tname\tconfirmed\trecovered\tdeaths\tactive\t';  
+    var all_country_cases_per_day = [];
+    var name_data = fs.readFileSync('../country_id_names.tsv');
     name_data = neatCsv(name_data)
 
     fetch("https://pomber.github.io/covid19/timeseries.json")
         .then(response => response.json())
         .then(data => {
-
-            var all_country_cases_per_day = [];
 
             for(i=0; i<name_data.length; i++){
                 
@@ -55,7 +48,6 @@ fs.readFileSync('../country_id_names.tsv', (err, name_data) => {
         });
 
         cmd.run('python Agg_data.py');
-})
 }
 
 // setInterval(getMainData, 100000);
