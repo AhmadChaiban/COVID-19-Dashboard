@@ -32,11 +32,20 @@
             <div style = 'width: 0.7%'></div>
             <div class = "col-md-5" style="height:870px;width:100%;min-width:25%;" id = "divBox">
                 <div class = 'card' style = 'height:410px;background : #2D3642;' id = 'nodeDiv'>
-                    <svg height ='400px' width="100%" id = "node" class = 'bravo'></svg>
+                        <svg height ='400px' width="100%" id = "node" class = 'bravo'></svg>
+                    <div class = 'aboveMap'>
+                            <center style='padding-top:2%; padding-bottom:0%;'> 
+                            <text style = 'color:white;'>Click to visualize graphs per country</text>
+                            <button type="button" class="btn btn-primary btn-block" id = 'resetButton' style = "width:25%; background-color:transparent; font-size:65%; visibility: hidden" onclick="lineGraph('all');countrySpecificHist('all');document.getElementById('resetButton').style.visibility= 'hidden'">
+                                Reset</button>
+                        </center>
+                    </div>
+
+
                 </div>
                 <div style = 'height: 1.5%'></div>
                 <div class = 'card' style = 'height:430px; background: #2d3642' id = 'latestCaseDiv'>
-                    <svg height ='400px' width="100%" id = "latestCasesNode" class = 'bravo'></svg>                    
+                    <svg height ='400px' width="100%" id = "latestCasesNode" class = 'bravo'></svg>                   
                 </div>
             </div>
             <div style = 'width: 0.7%'></div>
@@ -144,6 +153,14 @@
             fill: none;
             pointer-events: all;
         }
+        /* .overlay {
+            position: absolute;
+            background: rgba(100,100,100,0);
+            top:0px;
+            bottom:0px;
+            left:0px;
+            right:0px;
+        } */
 /*         
         .col-md-4 hist{
 
