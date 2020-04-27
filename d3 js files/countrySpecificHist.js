@@ -321,7 +321,7 @@ function countrySpecificHist(country){
         })
         }
 
-        var columns = ['Confirmed', 'Active', 'Recovered', 'Deaths']
+        var columns = ['Confirmed', 'Active', 'Recovered', 'Deaths', 'Click on each to filter bars']
 
         // svg.append('rect')
         //     .style('stroke','white')
@@ -343,7 +343,12 @@ function countrySpecificHist(country){
             })
             .style('fill','white')
             .attr('font-size', '12px')
-            .attr('x',0.1647*width)
+            .attr('x',function(d,i){
+                if (columns[i] == 'Click on each to filter bars'){
+                    return 0.095*width;
+                }
+                return 0.1647*width
+            })
             .attr('y', function(d,i){
                 return 25*i + 30
             })

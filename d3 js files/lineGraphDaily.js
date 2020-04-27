@@ -381,7 +381,7 @@ function lineGraph(country){
 
             });
 
-            var columns = ['Confirmed', 'Active', 'Recovered', 'Deaths']
+            var columns = ['Confirmed', 'Active', 'Recovered', 'Deaths', "Click on each to filter lines"]
 
 
                 mouseG.selectAll('#lineNode')
@@ -394,7 +394,14 @@ function lineGraph(country){
                     })
                     .style('fill','white')
                     .style('font-size', '12px')
-                    .attr('x',0.18*width)
+                    .attr('x',function(d,i){
+                        if(columns[i] == 'Click on each to filter lines'){
+                            return 0.1*width
+                        }
+                        else{
+                            return 0.18*width
+                        }
+                    })
                     .attr('y', function(d,i){
                         return 25*i + 35
                     }).on('click', function(d,i){
