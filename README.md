@@ -17,7 +17,7 @@ It is composed of 7 graphs:
 6. Confirmed/Active/Recovered/Deaths per day (Top right histogram)
 7. Total number of Confirmed/Active/Recovered/Deaths aggregated per day (Bottom right Line Graph)
 
-<p align="center"><img src="./images/dashboard.png" width="98%"/></p>
+<p align="center"><img src="./images/dashboard.PNG" width="98%"/></p>
 
 <!-- ![Dashboard](./images/dashboard.png | width=100) -->
 
@@ -31,7 +31,7 @@ The dashboard has some static functionalities (which will be changed in the futu
 
 This can either be done by tapping (on mobile), or hovering with your mouse. Moreover, upon clicking/tapping on any country, graphs number 6 and 7 can be visualized by country: 
 
-<p align="center"><img src="./images/HistPerCountry.png" width="60%"/></p>
+<p align="center"><img src="./images/HistPerCountry.PNG" width="60%"/></p>
 
 <p align="center"><img src="./images/LinePerDay.png" width="60%"/></p>
 
