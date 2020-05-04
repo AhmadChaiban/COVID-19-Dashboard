@@ -1,5 +1,4 @@
 .idea
-*.tsv
 node_modules
 world-countries_2.json
 package-lock.json
@@ -13,3 +12,9 @@ images/bio2.jpg
 *.pem
 
 *.MP4
+
+To Deploy/
+
+world_covid.tsv
+
+world_population.tsv
