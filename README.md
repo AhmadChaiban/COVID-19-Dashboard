@@ -73,10 +73,11 @@ Main Data Source: https://github.com/pomber/covid19
 
 This repo provided the main data that I later did my aggregations and other processing on. See the following files:
 
-1. DataFetchers/dataFetch.py
-2. DataFetchers/Agg_data.py
+1. **DataFetchers/dataFetch.py**
+2. **DataFetchers/Agg_data.py**
 
 They are being executed per hour on the EC2 server.
+Please run dataFetch.py in order to retrieve the data required from the data source. 
 
 ### D3.js files
 
@@ -95,6 +96,10 @@ The following files are used to visualize the graphs:
 Hope you find this project useful! 
 
 
+### Upcoming Features: 
+
+1. Implement country selection for the other four graphs. 
+2. Possibility of a search bar with recommendations.
 
 
 
