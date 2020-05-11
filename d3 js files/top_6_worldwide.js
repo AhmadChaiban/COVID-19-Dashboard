@@ -45,6 +45,9 @@ function top6(){
             .enter()
             .append('text')
             .text(function(d,i){
+                if(d['name'] =='United Kingdom'){
+                    return 'UK'
+                }
                 return d['name'];
             })
             .style('fill', 'white')
