@@ -96,8 +96,7 @@ Hope you find this project useful!
 
 ### Upcoming Features: 
 
-1. Implement country selection for the other four graphs. 
-2. Possibility of a search bar with recommendations.
+1. Search Bar (?)
 
 
 
