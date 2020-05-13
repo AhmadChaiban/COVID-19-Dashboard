@@ -135,7 +135,7 @@ function heatMap(){
 
                     countrySpecificHist(d.properties.name);
                     lineGraph(d.properties.name);
-                    // latestCases(d.properties.name);
+                    latestCases(d.properties.name);
 
                     // d3.selectAll('.arrow').attr('visibility','visible')
 

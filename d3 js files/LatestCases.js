@@ -34,7 +34,7 @@ function latestCases(country){
 
         last_entry = data[data.length - 1]
 
-        data = [last_entry['confirmed'],last_entry['active'], last_entry['recovered'], last_entry['deaths']]
+        data = [Math.abs(last_entry['confirmed']),Math.abs(last_entry['active']), Math.abs(last_entry['recovered']), Math.abs(last_entry['deaths'])]
 
         ordinals = ['confirmed', 'recovered', 'deaths', 'active']
 
@@ -43,35 +43,39 @@ function latestCases(country){
             return ordinals[i]; 
         }));
         y.domain([0, d3.max(data, function(d,i) { 
-            return Math.max(data[i], data[i+1]); 
+            return 1.1*Math.max(data[i], data[i+1]); 
         })]);
 
         var colors = ['#EAD8BD', '#5A8895', '#9ECAE1', '#0E77B4'];
 
         // append the rectangles for the bar chart
         svg.selectAll(".bar")
-        .data(data)
-        .enter().append("rect")
-        .attr("class", "bar")
-        .attr("x", function(d,i) { return x(ordinals[i]) + 0.04376*width; })
-        .attr("width", x.bandwidth()/4)
-        .attr('rx', 10)
-        .attr("y", function(d,i) { 
-            return y(data[i]); 
-        })
-        .attr("height", function(d,i) { 
-            return height - y(data[i]); 
-        })
-        .style('fill', function(d,i){
-            return colors[i]
-        });
+            .data(data)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d,i) { return x(ordinals[i]) + 0.04376*width; })
+            .attr("width", x.bandwidth()/4)
+            .attr('rx', 10)
+            .attr("y", function(d,i) { 
+                return y(data[i]); 
+            })
+            .attr("height", function(d,i) { 
+                return height - y(data[i]); 
+            })
+            .style('fill', function(d,i){
+                return colors[i]
+            });
 
         var titles = ['Confirmed', 'Active', 'Recoveries', 'Deaths']
 
-        svg.selectAll('#latestCasesNode')
+        console.log(height)
+
+
+        svg.selectAll('svg')
             .data(titles)
             .enter()
             .append('text')
+            .attr('class','.text1')
             .text(function(d,i){
                 return titles[i];
             })
@@ -80,12 +84,12 @@ function latestCases(country){
                 return x(ordinals[i]) + 0.04564*width;
             })
             .attr('y', function(d,i){
-                return y(-8000);
+                return 1.0967*height;
             })
             .style('font-size', '80%');
 
 
-        svg.selectAll('#latestCasesNode')
+        svg.selectAll('svg')
             .data(data)
             .enter()
             .append('text')
@@ -97,7 +101,7 @@ function latestCases(country){
                 return x(ordinals[i]) + 0.04564*width;
             })
             .attr('y', function(d,i){
-                return y(-4500);
+                return 1.0483*height;
             })
             .style('font-size', '80%');
 
