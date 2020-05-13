@@ -29,11 +29,9 @@ The dashboard has some static functionalities (which will be changed in the futu
 <br></br>
 <!-- ![Lebanon](./images/Lebanon.png) -->
 
-This can either be done by tapping (on mobile), or hovering with your mouse. Moreover, upon clicking/tapping on any country, graphs number 6 and 7 can be visualized by country: 
+This can either be done by tapping (on mobile), or hovering with your mouse. Moreover, upon clicking/tapping on any country, **all graphs** can be visualized by country: 
 
-<p align="center"><img src="./images/HistPerCountry.PNG" width="60%"/></p>
-
-<p align="center"><img src="./images/LinePerDay.png" width="60%"/></p>
+<p align="center"><img src="./images/HeatMapReset.gif" width="80%"/></p>
 
 <br></br>
 
@@ -52,7 +50,7 @@ Here the user can also toggle the lines/Bars they want to see by clicking on the
 
 Tapping/clicking the reset button will allow the user to return to the worldwide view of the graphs 
 
-<p align="center"><img src="./images/HeatMapReset.gif" width="80%"/></p>
+<p align="center"><img src="./images/Reset.gif" width="80%"/></p>
 
 <!-- ![resetpress](./images/HeatMapReset.gif) -->
 
