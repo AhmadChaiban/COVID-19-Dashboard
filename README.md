@@ -58,7 +58,7 @@ Tapping/clicking the reset button will allow the user to return to the worldwide
 
 The following is a mobile preview of the dashboard. It has all the same functionalities as the desktop version. 
 
-<p align="center"><img src="./images/mobileView.gif" width="30%"/></p>
+<p align="center"><img src="./images/mobileView2.gif" width="30%"/></p>
 
 
 
