@@ -136,6 +136,8 @@ function heatMap(){
                     countrySpecificHist(d.properties.name);
                     lineGraph(d.properties.name);
                     latestCases(d.properties.name);
+                    worldRace(d.properties.name);
+                    worldPercent(d.properties.name);
 
                     // d3.selectAll('.arrow').attr('visibility','visible')
 

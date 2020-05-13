@@ -1,43 +1,58 @@
-function worldPercent(){
+function worldPercent(country){
 
-    var width = document.getElementById('statusDiv').offsetWidth;
-    var height = document.getElementById('statusDiv').offsetHeight;
+    d3.tsv('world_population.tsv', function(data_population){
 
-    d3.selectAll('#statusNode').selectAll('*').remove()
+        console.log(data_population)
 
-    var svg = d3.selectAll('#statusNode')
-                .append('g')
-                .attr('width', width)
-                .attr('height', height);
+        var width = document.getElementById('statusDiv').offsetWidth;
+        var height = document.getElementById('statusDiv').offsetHeight;
 
-    d3.tsv("world_covid.tsv", function(data) {
+        d3.selectAll('#statusNode').selectAll('*').remove()
 
-        var aggregation = aggregate(data);
+        var svg = d3.selectAll('#statusNode')
+                    .append('g')
+                    .attr('width', width)
+                    .attr('height', height);
 
-        var percent_of_world_infected = (aggregation[0]/7794798739) * 100;
+        d3.tsv("world_covid.tsv", function(data) {
 
-        var percent_str = (percent_of_world_infected + '').substr(0,6) + '%'
+            var aggregation = aggregate(data, country);
 
-        svg.selectAll('#statusNode')
-            .data(percent_str)
-            .enter()
-            .append('text')
-            .text(percent_str)
-            .attr('x', 0.1881*width)
-            .attr('y', 90)
-            .style('fill', 'white')
-            .style('font-size', 0.1567*width + 'px')
+            if(country == 'all'){
+                var percent_of_world_infected = (aggregation[0]/7794798739) * 100;
+            }
+            else{
+                for(i=0; i<data_population.length; i++){
+                    if(data_population[i]['name'] == country){
+                        var percent_of_world_infected = (aggregation[0]/parseInt(data_population[i]['population'])) * 100;
+                    }
+                }
+            }
 
-        svg.selectAll('#statusNode')
-            .data(percent_str)
-            .enter()
-            .append('text')
-            .text('Of People have been infected')
-            .attr('x', 0.1567*width)
-            .attr('y', 120)
-            .style('fill', 'white')
-            .style('font-size', 0.0501*width+'px')
 
-    });
+            var percent_str = (percent_of_world_infected + '').substr(0,6) + '%'
+
+            svg.selectAll('#statusNode')
+                .data(percent_str)
+                .enter()
+                .append('text')
+                .text(percent_str)
+                .attr('x', 0.1881*width)
+                .attr('y', 90)
+                .style('fill', 'white')
+                .style('font-size', 0.1567*width + 'px')
+
+            svg.selectAll('#statusNode')
+                .data(percent_str)
+                .enter()
+                .append('text')
+                .text('Of People have been infected')
+                .attr('x', 0.1567*width)
+                .attr('y', 120)
+                .style('fill', 'white')
+                .style('font-size', 0.0501*width+'px')
+
+        });
+    })
 
 }

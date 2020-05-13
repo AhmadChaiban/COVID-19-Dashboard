@@ -1,26 +1,34 @@
-function aggregate(json_array){
-    var total_confirmed = 0
-    var total_recovered = 0
-    var total_deaths = 0
-    for(i=0; i<json_array.length;i++){
-        total_confirmed += parseInt(json_array[i]['confirmed']);
-        total_recovered += parseInt(json_array[i]['recovered']);
-        total_deaths += parseInt(json_array[i]['deaths']);
+function aggregate(json_array, country){
+    if(country == 'all'){
+        var total_confirmed = 0
+        var total_recovered = 0
+        var total_deaths = 0
+        for(i=0; i<json_array.length;i++){
+            total_confirmed += parseInt(json_array[i]['confirmed']);
+            total_recovered += parseInt(json_array[i]['recovered']);
+            total_deaths += parseInt(json_array[i]['deaths']);
+        }
+        var total_active = total_confirmed - total_recovered - total_deaths;
+        return [total_confirmed, total_recovered, total_deaths, total_active];
     }
-    var total_active = total_confirmed - total_recovered - total_deaths;
-    return [total_confirmed, total_recovered, total_deaths, total_active];
+    else{
+        for(i=0; i<json_array.length; i++){
+            if(json_array[i]['name'] == country){
+                return [json_array[i]['confirmed'], json_array[i]['recovered'], json_array[i]['deaths'], json_array[i]['active']]
+            }
+        }
+    }
 }
 
 
-function worldRace(){
-
-    var svg = d3.selectAll('#worldRace').attr('width',document.getElementById('worldRaceDiv').offsetWidth);
+function worldRace(country){
         //Using this selection to update the SVG everytime the function is called
-    svg.selectAll("*").remove();
+    d3.selectAll('#worldRace').selectAll('*').remove()
 
     d3.tsv("../world_covid.tsv", function(data) {
         
-        var aggregation = aggregate(data)
+        var aggregation = aggregate(data, country)
+        console.log(aggregation)
 
         // set the dimensions and margins of the graph
         var margin = {top: 10, right: 30, bottom: 0, left: 30},
@@ -28,7 +36,7 @@ function worldRace(){
             height = document.getElementById('worldRaceDiv').offsetHeight*0.8 - margin.top - margin.bottom;
 
         // append the svg object to the body of the page
-        var svg = d3.select("#worldRace")
+        var svg = d3.selectAll("#worldRace")
             .append("svg")
                 .attr("width", document.getElementById('worldRaceDiv').offsetWidth + margin.left + margin.right)
                 .attr("height", document.getElementById('worldRaceDiv').offsetHeight*1.2 + margin.top + margin.bottom)
@@ -102,7 +110,14 @@ function worldRace(){
             .data(['text'])
             .enter()
             .append('text')
-            .text('COVID-19 Worldwide Race')
+            .text(function(d){
+                if(country == 'all'){
+                    return 'COVID-19 Worldwide Race'
+                }
+                else{
+                    return `COVID-19 ${country} Race`
+                }
+            })
             .attr('x', width/12)
             .attr('y', 0.1*height)
             .style('fill','white')
