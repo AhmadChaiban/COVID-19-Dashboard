@@ -1,4 +1,5 @@
 function aggregate(json_array, country){
+    console.log(country)
     if(country == 'all'){
         var total_confirmed = 0
         var total_recovered = 0

@@ -52,9 +52,9 @@ def get_agg_data():
             }
         )
         grouped_agg_df = set_abs(grouped_agg_df)
-        grouped_agg_df.to_csv(f'../CountryData/cases_per_day_agg_{countries[idx].replace("*","").replace(" ","")}.csv')
+        grouped_agg_df.to_csv(f'../CountryData/cases_per_day_agg_{countries[idx].replace("*","").strip()}.csv')
         difference = grouped_agg_df.diff()
         difference.iloc[0] = grouped_agg_df.iloc[0]
         grouped_agg_df = difference.astype('int')     
-        grouped_agg_df.to_csv(f'../CountryData/cases_per_day_diff_{countries[idx].replace("*","").replace(" ", "")}.csv')
+        grouped_agg_df.to_csv(f'../CountryData/cases_per_day_diff_{countries[idx].replace("*","").strip()}.csv')
         
