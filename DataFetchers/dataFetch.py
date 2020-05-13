@@ -42,6 +42,7 @@ def getMainData():
 while True:
     getMainData()
     get_agg_data()
+    break
     time.sleep(3600)
 
 

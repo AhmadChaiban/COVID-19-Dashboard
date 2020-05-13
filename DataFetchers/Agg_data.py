@@ -1,5 +1,16 @@
 import pandas as pd
 
+def set_abs(dataframe):
+    """
+        Takes the absolute value of the columns of a dataframe
+    """
+    dataframe.confirmed  =  dataframe.confirmed.abs()
+    dataframe.recovered  =  dataframe.recovered.abs()
+    dataframe.deaths     =  dataframe.deaths.abs()
+    dataframe.active     =  dataframe.active.abs()
+
+    return dataframe
+
 
 def get_agg_data():
     dataframe = pd.read_csv('../cases_per_day.csv', header=None, sep=',')
@@ -40,9 +51,10 @@ def get_agg_data():
 
             }
         )
-        grouped_agg_df.to_csv(f'../CountryData/cases_per_day_agg_{countries[idx].replace("*","")}.csv')
+        grouped_agg_df = set_abs(grouped_agg_df)
+        grouped_agg_df.to_csv(f'../CountryData/cases_per_day_agg_{countries[idx].replace("*","").replace(" ","")}.csv')
         difference = grouped_agg_df.diff()
         difference.iloc[0] = grouped_agg_df.iloc[0]
         grouped_agg_df = difference.astype('int')     
-        grouped_agg_df.to_csv(f'../CountryData/cases_per_day_diff_{countries[idx].replace("*","")}.csv')
+        grouped_agg_df.to_csv(f'../CountryData/cases_per_day_diff_{countries[idx].replace("*","").replace(" ", "")}.csv')
         
