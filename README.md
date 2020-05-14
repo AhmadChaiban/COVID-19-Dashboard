@@ -97,6 +97,7 @@ Hope you find this project useful!
 ### Upcoming Features: 
 
 1. Search Bar (?)
+2. Transitions between graph switches
 
 
 
