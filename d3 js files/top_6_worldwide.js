@@ -26,10 +26,12 @@ function top6(){
         var sorted_3_second = [sorted_data[3], sorted_data[4], sorted_data[5]];
 
         var svgRace = d3.selectAll('#Top6')
-                        .attr('height', document.getElementById('top6Div').offsetHeight)
+                        .attr('height', document.getElementById('Top6').offsetHeight)
 
         width = document.getElementById('top6Div').offsetWidth
         height = document.getElementById('top6Div').offsetHeight
+
+        console.log(height)
 
         svgRace.append('g')
             .data(['Highest 6 infected (Confirmed)'])

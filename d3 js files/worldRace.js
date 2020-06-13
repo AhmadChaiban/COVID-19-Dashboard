@@ -120,7 +120,7 @@ function worldRace(country){
                 }
             })
             .attr('x', width/12)
-            .attr('y', 0.1*height)
+            .attr('y', 0.05*height)
             .style('fill','white')
             .style('font-size', 0.07*width + 'px');
         
