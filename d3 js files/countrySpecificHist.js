@@ -366,6 +366,7 @@ function countrySpecificHist(country){
             .on('mouseover', function(d,i){
                 i+=1
                 d3.selectAll('#bar'+i).style('opacity',0.4)
+                d3.select(this).style('cursor', 'pointer')
             })
             .on('mouseout', function(d,i){
                 i+=1

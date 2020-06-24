@@ -121,6 +121,8 @@ function heatMap(){
                 .style("opacity", 0.4)
                 .style("stroke","white")
                 .style("stroke-width",3);
+
+            d3.select(this).style('cursor', 'pointer')
             })
             .on('click',function(d){
                 tip.show(d);

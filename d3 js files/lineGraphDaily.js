@@ -418,6 +418,7 @@ function lineGraph(country){
                     })
                     .on('mouseover', function(d,i){
                         d3.selectAll(line_classes[i]).style('opacity',0.4)
+                        d3.select(this).style('cursor', 'pointer')
                     })
                     .on('mouseout', function(d,i){
                         d3.selectAll(line_classes[i]).style('opacity',1)
