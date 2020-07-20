@@ -29,7 +29,7 @@ function top6(){
                         .attr('height', document.getElementById('Top6').offsetHeight)
 
         width = document.getElementById('top6Div').offsetWidth
-        height = document.getElementById('top6Div').offsetHeight
+        height = document.getElementById('top6Div').offsetHeight*0.95
 
         console.log(height)
 
@@ -49,6 +49,9 @@ function top6(){
             .text(function(d,i){
                 if(d['name'] =='United Kingdom'){
                     return 'UK'
+                }
+                if (d['name'] == 'South Africa'){
+                    return 'South A.'
                 }
                 return d['name'];
             })
@@ -70,7 +73,7 @@ function top6(){
             .style('fill', 'white')
             .attr('y',0.38*height)
             .attr('text-anchor','left')
-            .style('font-size', (0.052*width)+'px')
+            .style('font-size', (0.04*width)+'px')
             .attr('x', function(d,i){
                 return i*(0.25*width) + width/7;
             });
@@ -82,6 +85,9 @@ function top6(){
             .text(function(d,i){
                 if(d['name'] =='United Kingdom'){
                     return 'UK'
+                }
+                if (d['name'] == 'South Africa'){
+                    return 'South A.'
                 }
                 return d['name'];
             })
@@ -103,7 +109,7 @@ function top6(){
             .style('fill', 'white')
             .attr('y',0.67*height)
             .attr('text-anchor','left')
-            .style('font-size', (0.052*width)+'px')
+            .style('font-size', (0.04*width)+'px')
             .attr('x', function(d,i){
                 return i*(0.25*width) + width/7;
             });
