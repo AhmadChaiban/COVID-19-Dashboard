@@ -77,6 +77,8 @@ function heatMap(){
 
     function ready(error, data, population) {
 
+        console.log(data.features)
+
     var topology = topojson.topology(data.features);
     topology = topojson.presimplify(topology);
 

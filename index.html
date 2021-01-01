@@ -9,55 +9,57 @@
     <title>Covidemic - Covid-19 Updates</title>
 </head>
 <body class = 'body' style = 'background-color:#212733 !important;'>
-    <div class = "col-lg-12" style = "width:100%;height:1%; padding-bottom:0%;background-color: black;">
+
+    <div class = "col-lg-12" style = "width:100%;height:7%; padding-bottom:0%;background-color: black;">
         <h1 style = "text-align: center; font-family: monospace; font-size: 30px;opacity: 1;padding-top: 0%; color: white">COVID-19 Updates</h1>
         <center style = 'display:grid'>
                 <a href="https://github.com/AhmadChaiban/COVID-19-Dashboard" style = 'font-size:70%;color:white;'><img src='./images/githubicon.png' width = '15px'/> ahmadchaiban</a>        
         </center>
     </div>
 
-    <div class = 'container-fluid' style = 'width:100%; height:100%'>
-        <div class = "row no-gutters" style = "width:100%;height:100%; max-width:100%; max-height: 100%; padding-top:12px; flex-wrap: wrap">
-            <div class = "col-md-2" style="height: 100%; max-width: 100%;" id = "divBoxtopworld_race">
-                <div class = 'card' style = 'height:98.5%;width: 100%;background : #2D3642;' id = 'top6Div'>
-                    <svg style = 'padding-top:3%;' width="100%" id = "Top6" class = 'zulu'></svg>
+    <div class = 'container-fluid' style = 'width:100%; height:100%' id = "DashboardContainer">
+        <div class = "row no-gutters" style = "width:100%;height:100%; max-width:100%; padding-top:0.5%; flex-wrap: wrap" id="DashRow">
+            <div class = "col-md-2" id = "divBoxtopworld_race">
+                <!-- Top 6 graph -->
+                <div class = 'card' style = 'height:25%;width:100%;background : #2D3642;margin-bottom: 3%;' id = 'top6Div'>
+                    <svg style = 'padding-top:3%;' height="100%" width="100%" id = "Top6" class = 'zulu'></svg>
                 </div>
-                <div style = 'height: 1.5%'></div>
-                <div class = 'card' style = 'height:100%; background : #2D3642;' id = 'worldRaceDiv'>
-                    <svg width="100%" id = "worldRace" class = 'charlie'></svg>
+                <!-- World Race graph -->
+                <div class = 'card' style = 'height:50%; background : #2D3642;margin-bottom: 3%;' id = 'worldRaceDiv'>
+                    <svg width="100%" height="100%" id = "worldRace" class = 'charlie'></svg>
                 </div>
-                <div style = 'height: 1.5%'></div>
-                <div class = 'card' style = 'height:100%; background : #2D3642' id = 'statusDiv'>
-                    <svg width="100%" id = "statusNode" class = 'charlie'></svg>
+                <!-- Percent infectionstatus graph -->
+                <div class = 'card' style = 'height:15%; background : #2D3642' id = 'statusDiv'>
+                    <svg width="100%" height="100%" id = "statusNode" class = 'charlie'></svg>
                 </div>
             </div>
+            
             <div style = 'width: 0.7%'></div>
-            <div class = "col-md-5" style="height:100%;width:100%;min-width:25%;" id = "divBox">
-                <div class = 'card' style = 'height:100%;background : #2D3642;' id = 'nodeDiv'>
-                        <svg width="100%" id = "node" class = 'bravo'></svg>
+
+            <div class = "col-md-5" style="min-width:25%;" id = "divBox">
+                <div class = 'card' style = 'height:45.7%;background : #2D3642;margin-bottom: 1.5%;' id = 'nodeDiv'>
+                        <svg id = "node" class = 'bravo'></svg>
                     <div class = 'aboveMap'>
-                            <center style='padding-top:2%; padding-bottom:0%;'> 
+                        <center style='padding-top:2%; padding-bottom:0%;'> 
                             <text style = 'color:white;'>Click to visualize graphs per country</text>
                             <button type="button" class="btn btn-primary btn-block" id = 'resetButton' style = "width:25%; background-color:transparent; font-size:65%; visibility: hidden" onclick="lineGraph('all');countrySpecificHist('all');latestCases('all');worldRace('all');worldPercent('all');document.getElementById('resetButton').style.visibility= 'hidden'">
                                 Reset</button>
                         </center>
                     </div>
-
-
                 </div>
-                <div style = 'height: 1.5%'></div>
-                <div class = 'card' style = 'height:430px; background: #2d3642' id = 'latestCaseDiv'>
-                    <svg height ='400px' width="100%" id = "latestCasesNode" class = 'bravo'></svg>                   
+                <div class = 'card' style = 'height:45%; background: #2d3642' id = 'latestCaseDiv'>
+                    <svg height ='100%' width="100%" id = "latestCasesNode" class = 'bravo'></svg>                   
                 </div>
             </div>
+
             <div style = 'width: 0.7%'></div>
-            <div class = "col-md-4 hist" style="height:840px;width:100%; min-width:39%;" id = "divBoxHist">
-                <div class = 'card' style = 'height:410px;background : #2D3642' id = 'histogramDiv'>
+
+            <div class = "col-md-4" style="min-width:39%;" id = "divBoxHist">
+                <div class = 'card' style = 'height:45.7%;background : #2D3642;margin-bottom: 1.5%;' id = 'histogramDiv'>
                     <svg height =100% width="100%" id = "histogramNode" class = 'alpha'></svg>
                 </div>
-                <div style = 'height: 1.5%'></div>
-                <div class = 'card' style = 'height:430px; background: #2d3642' id = 'lineDiv'>
-                    <svg height ="100%" width="100%" id = "lineNode" class = 'delta'></svg>
+                <div class = 'card' style = 'height:45%; background: #2d3642;' id = 'lineDiv'>
+                    <svg height ="100%" width="100%" id = "lineNode"></svg>
                 </div>
             </div>
         </div>
@@ -72,15 +74,19 @@
 
             //second column
             document.getElementById("node").style.height = (document.documentElement.scrollHeight * 0.40) + "px"
+            document.getElementById("latestCasesNode").style.height = (document.documentElement.scrollHeight * 0.425) + "px"
 
-            //Second column
+            //third column
+            document.getElementById("histogramNode").style.height = (document.documentElement.scrollHeight * 0.468) + "px"
+            document.getElementById("lineNode").style.height = (document.documentElement.scrollHeight * 0.425) + "px"
 
         }
         else{
-            document.getElementById("Top6").style.height = (390) + "px"
-            document.getElementById("worldRace").style.height = (500) + "px"
+            document.getElementById("Top6").style.height = (380) + "px"
+            document.getElementById("worldRace").style.height = (400) + "px"
             document.getElementById("statusNode").style.height = (196) + "px"
         }
+
     </script>
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -102,6 +108,7 @@
 
     </script>
     <script>
+
         heatMap();
         worldRace('all');
         top6();
@@ -109,6 +116,7 @@
         lineGraph('all');
         worldPercent('all');
         latestCases('all');
+
         var w = window.innerWidth;
         var h = window.innerHeight;
         window.addEventListener("resize", function(event){
@@ -197,6 +205,14 @@
                 
             }   
         } */
+        html, body {
+            height: 100%;
+        }
+        .fill-height {
+            min-height: 100%;
+            height:auto !important; /* cross-browser */
+            height: 100%; /* cross-browser */
+        }
 
 
     </style>

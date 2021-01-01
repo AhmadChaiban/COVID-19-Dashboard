@@ -7,6 +7,7 @@ function lineGraph(country){
         height = document.getElementById('lineDiv').offsetHeight - margin.top - margin.bottom,
         height2 = document.getElementById('lineDiv').offsetHeight - margin2.top - margin2.bottom;
 
+        console.log(document.getElementById('lineDiv'))
     svg.selectAll('*').remove()
 
     var parseDate = d3.timeParse("%Y-%m-%d");
@@ -104,7 +105,7 @@ function lineGraph(country){
             .attr("class", "line")
             .attr("d", line)
             .attr('id','lineCursor')
-            .style('stroke','EAD8BD')
+            .style('stroke','#EAD8BD')
             .style('stroke-width', 3)
             .attr('visibility','visible');
 
@@ -122,7 +123,7 @@ function lineGraph(country){
             .attr("class", "line_active")
             .attr("d", line_active)
             .attr('id','lineCursor')
-            .style('stroke','0E77B4')
+            .style('stroke','#0E77B4')
             .style('stroke-width', 3)
             .attr('visibility','visible');
 
@@ -144,7 +145,7 @@ function lineGraph(country){
         //     .attr('y', 10)
         //     .attr("transform","translate(100,100)");
 
-        var colors = ['#EAD8BD', '#0E77B4', 'white', 'black'];
+        var colors = ['rgb(234, 216, 189)', '#0E77B4', 'white', 'black'];
 
         
         Line_chart.selectAll('#lineNode')

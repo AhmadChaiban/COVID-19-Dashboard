@@ -139,7 +139,7 @@ function countrySpecificHist(country){
                     .attr('y', function(d, i){
                     return yScale(parseInt(d.value))
                     })
-                    .style('fill', 'EAD8BD')
+                    .style('fill', '#EAD8BD')
                     .style('opacity', 1)
                     .attr('width', xBand.bandwidth()*0.9)
                     .attr('height', function(d){
@@ -199,7 +199,7 @@ function countrySpecificHist(country){
                     .attr('height', function(d){
                     return height - yScale(d.value_active)
                     })
-                    .style('fill','0E77B4')
+                    .style('fill','#0E77B4')
                     .style('opacity',1)
                     .on('mouseover', function(d,i){
                         d3.select(this).style('opacity',0.4);

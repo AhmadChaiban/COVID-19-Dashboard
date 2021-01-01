@@ -17,6 +17,8 @@ def getMainData():
             
             if name_data_instance[1] == 'South Korea':
                 name_data_instance[1] = 'Korea, South'
+            elif name_data_instance[1] == 'Western Sahara':
+                continue
 
             case_info_list = []
             for j in range(len(data[name_data_instance[1]])):
