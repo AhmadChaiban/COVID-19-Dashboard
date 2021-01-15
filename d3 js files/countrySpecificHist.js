@@ -139,7 +139,7 @@ function countrySpecificHist(country){
                     .attr('y', function(d, i){
                     return yScale(parseInt(d.value))
                     })
-                    .style('fill', '#EAD8BD')
+                    .style('fill', '#C87F4C')
                     .style('opacity', 1)
                     .attr('width', xBand.bandwidth()*0.9)
                     .attr('height', function(d){
@@ -199,7 +199,7 @@ function countrySpecificHist(country){
                     .attr('height', function(d){
                     return height - yScale(d.value_active)
                     })
-                    .style('fill','#0E77B4')
+                    .style('fill','#65A17D')
                     .style('opacity',1)
                     .on('mouseover', function(d,i){
                         d3.select(this).style('opacity',0.4);
@@ -242,7 +242,7 @@ function countrySpecificHist(country){
             .attr('height', function(d){
                 return height - yScale(d.value_rec)
             })
-            .style('fill','white')
+            .style('fill','#67AED5')
             .style('opacity',1)
             .on('mouseover', function(d,i){
                 d3.select(this).style('opacity',0.4);
@@ -283,7 +283,7 @@ function countrySpecificHist(country){
             .attr('height', function(d){
             return Math.abs(height - yScale(d.value_dead))
             })
-            .style('fill','black')
+            .style('fill','#CB9386')
             .style('opacity',1)
             .on('mouseover', function(d,i){
                 d3.select(this).style('opacity',0.4);
@@ -373,7 +373,7 @@ function countrySpecificHist(country){
                 d3.selectAll('#bar'+i).style('opacity',1)
             });
 
-        var colors = ['#EAD8BD', '#0E77B4', 'white', 'black'];
+        var colors = ['#C87F4C', '#65A17D', '#67AED5', '#CB9386'];
 
         
         svg.selectAll('#histogramNode')

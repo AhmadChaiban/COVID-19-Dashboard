@@ -105,7 +105,7 @@ function lineGraph(country){
             .attr("class", "line")
             .attr("d", line)
             .attr('id','lineCursor')
-            .style('stroke','#EAD8BD')
+            .style('stroke','#C87F4C')
             .style('stroke-width', 3)
             .attr('visibility','visible');
 
@@ -114,7 +114,7 @@ function lineGraph(country){
             .attr("class", "line_recovered")
             .attr("d", line_recovered)
             .attr('id','lineCursor')
-            .style('stroke', 'white')
+            .style('stroke', '#67AED5')
             .style('stroke-width', 3)
             .attr('visibility','visible');
 
@@ -123,7 +123,7 @@ function lineGraph(country){
             .attr("class", "line_active")
             .attr("d", line_active)
             .attr('id','lineCursor')
-            .style('stroke','#0E77B4')
+            .style('stroke','#65A17D')
             .style('stroke-width', 3)
             .attr('visibility','visible');
 
@@ -132,7 +132,7 @@ function lineGraph(country){
             .attr("class", "line_deaths")
             .attr("d", line_deaths)
             .attr('id','lineCursor')
-            .style('stroke', 'black')
+            .style('stroke', '#CB9386')
             .style('stroke-width', 3)
             .attr('visibility','visible');
 
@@ -145,7 +145,7 @@ function lineGraph(country){
         //     .attr('y', 10)
         //     .attr("transform","translate(100,100)");
 
-        var colors = ['rgb(234, 216, 189)', '#0E77B4', 'white', 'black'];
+        var colors = ['#C87F4C', '#65A17D', '#67AED5', '#CB9386'];
 
         
         Line_chart.selectAll('#lineNode')

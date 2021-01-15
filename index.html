@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style = 'background-color:#212733 !important;'>
+<html lang="en" style = 'background-color:#3C3D41 !important;'>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="bootStrap.css">
     <title>Covidemic - Covid-19 Updates</title>
 </head>
-<body class = 'body' style = 'background-color:#212733 !important;'>
+<body class = 'body' style = 'background-color:#3C3D41 !important;'>
 
     <div class = "col-lg-12" style = "width:100%;height:7%; padding-bottom:0%;background-color: black;">
         <h1 style = "text-align: center; font-family: monospace; font-size: 30px;opacity: 1;padding-top: 0%; color: white">COVID-19 Updates</h1>
@@ -17,19 +17,19 @@
         </center>
     </div>
 
-    <div class = 'container-fluid' style = 'width:100%; height:100%' id = "DashboardContainer">
+    <div class = 'container-fluid' style = 'width:100%; height:91%' id = "DashboardContainer">
         <div class = "row no-gutters" style = "width:100%;height:100%; max-width:100%; padding-top:0.5%; flex-wrap: wrap" id="DashRow">
             <div class = "col-md-2" id = "divBoxtopworld_race">
                 <!-- Top 6 graph -->
-                <div class = 'card' style = 'height:25%;width:100%;background : #2D3642;margin-bottom: 3%;' id = 'top6Div'>
+                <div class = 'card' style = 'height:25%;width:100%;background : #2C2C2C;margin-bottom: 3%;' id = 'top6Div'>
                     <svg style = 'padding-top:3%;' height="100%" width="100%" id = "Top6" class = 'zulu'></svg>
                 </div>
                 <!-- World Race graph -->
-                <div class = 'card' style = 'height:50%; background : #2D3642;margin-bottom: 3%;' id = 'worldRaceDiv'>
+                <div class = 'card' style = 'height:50%; background : #2C2C2C;margin-bottom: 3%;' id = 'worldRaceDiv'>
                     <svg width="100%" height="100%" id = "worldRace" class = 'charlie'></svg>
                 </div>
                 <!-- Percent infectionstatus graph -->
-                <div class = 'card' style = 'height:15%; background : #2D3642' id = 'statusDiv'>
+                <div class = 'card' style = 'height:24%; background : #2C2C2C' id = 'statusDiv'>
                     <svg width="100%" height="100%" id = "statusNode" class = 'charlie'></svg>
                 </div>
             </div>
@@ -37,7 +37,8 @@
             <div style = 'width: 0.7%'></div>
 
             <div class = "col-md-5" style="min-width:25%;" id = "divBox">
-                <div class = 'card' style = 'height:45.7%;background : #2D3642;margin-bottom: 1.5%;' id = 'nodeDiv'>
+                <!-- World map -->
+                <div class = 'card' style = 'height:49.9%;background : #2C2C2C;margin-bottom: 1.5%;' id = 'nodeDiv'>
                         <svg id = "node" class = 'bravo'></svg>
                     <div class = 'aboveMap'>
                         <center style='padding-top:2%; padding-bottom:0%;'> 
@@ -47,18 +48,21 @@
                         </center>
                     </div>
                 </div>
-                <div class = 'card' style = 'height:45%; background: #2d3642' id = 'latestCaseDiv'>
+                <!-- Latest cases histogram -->
+                <div class = 'card' style = 'height:49.8%; background: #2C2C2C' id = 'latestCaseDiv'>
                     <svg height ='100%' width="100%" id = "latestCasesNode" class = 'bravo'></svg>                   
                 </div>
             </div>
 
             <div style = 'width: 0.7%'></div>
-
-            <div class = "col-md-4" style="min-width:39%;" id = "divBoxHist">
-                <div class = 'card' style = 'height:45.7%;background : #2D3642;margin-bottom: 1.5%;' id = 'histogramDiv'>
+            
+            <div class = "col-md-4" style="min-width:40%;" id = "divBoxHist">
+                <!-- Daily histogram node -->
+                <div class = 'card' style = 'height:49.9%;background : #2C2C2C;margin-bottom: 1.5%;' id = 'histogramDiv'>
                     <svg height =100% width="100%" id = "histogramNode" class = 'alpha'></svg>
                 </div>
-                <div class = 'card' style = 'height:45%; background: #2d3642;' id = 'lineDiv'>
+                <!-- Daily aggregate line graph -->
+                <div class = 'card' style = 'height:49.8%; background: #2C2C2C;' id = 'lineDiv'>
                     <svg height ="100%" width="100%" id = "lineNode"></svg>
                 </div>
             </div>
@@ -66,7 +70,7 @@
         
     </div>
     <script>
-        if(document.documentElement.scrollHeight <= document.documentElement.offsetWidth){
+        // if(document.documentElement.scrollHeight <= document.documentElement.offsetWidth){
             //first column
             document.getElementById("Top6").style.height = (document.documentElement.scrollHeight * 0.26) + "px"
             document.getElementById("worldRace").style.height = (document.documentElement.scrollHeight * 0.52) + "px"
@@ -80,11 +84,13 @@
             document.getElementById("histogramNode").style.height = (document.documentElement.scrollHeight * 0.468) + "px"
             document.getElementById("lineNode").style.height = (document.documentElement.scrollHeight * 0.425) + "px"
 
-        }
-        else{
+        // }
+        if(document.documentElement.scrollHeight > document.documentElement.offsetWidth){
             document.getElementById("Top6").style.height = (380) + "px"
-            document.getElementById("worldRace").style.height = (400) + "px"
+            document.getElementById("worldRace").style.height = (490) + "px"
             document.getElementById("statusNode").style.height = (196) + "px"
+            document.getElementById("statusNode").style.height = (196) + "px"
+
         }
 
     </script>

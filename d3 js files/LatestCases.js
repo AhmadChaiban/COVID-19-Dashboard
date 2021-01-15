@@ -46,7 +46,7 @@ function latestCases(country){
             return 1.1*Math.max(data[i], data[i+1]); 
         })]);
 
-        var colors = ['#EAD8BD', '#5A8895', '#9ECAE1', '#0E77B4'];
+        var colors = ['#C87F4C', '#65A17D', '#67AED5', '#CB9386'];
 
         // append the rectangles for the bar chart
         svg.selectAll(".bar")
