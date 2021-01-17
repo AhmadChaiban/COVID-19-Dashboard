@@ -47,7 +47,8 @@ function worldRace(country){
 
         // X axis
         var domain_array = ['Confirmed', 'Recovered', 'Deaths', 'Active'];
-        var colors = ["rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]
+        // var colors = ["rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]
+        var colors = ["rgb(171, 250, 98)", "rgb(251, 222, 89)", "rgb(151, 250, 162)", "rgb(138, 251, 201)"]
         var x = d3.scaleBand()
             .range([ 0, width ])
             .domain(domain_array)
