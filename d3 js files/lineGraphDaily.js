@@ -31,21 +31,28 @@ function lineGraph(country){
         .extent([[0, 0], [width, height]])
         .on("zoom", zoomed);
 
+    var interpolation_type =  d3.curveCardinal;
+
+
     var line = d3.line()
         .x(function (d) { return x(d.date); })
-        .y(function (d) { return y(parseInt(d.confirmed)); });
+        .y(function (d) { return y(parseInt(d.confirmed)); })
+        .curve(interpolation_type);
 
     var line_recovered = d3.line()
         .x(function (d) { return x(d.date); })
-        .y(function (d) { return y(parseInt(d.recovered)); });
+        .y(function (d) { return y(parseInt(d.recovered)); })
+        .curve(interpolation_type);
 
     var line_active = d3.line()
         .x(function (d) { return x(d.date); })
-        .y(function (d) { return y(parseInt(d.active)); });
+        .y(function (d) { return y(parseInt(d.active)); })
+        .curve(interpolation_type);
 
     var line_deaths = d3.line()
         .x(function (d) { return x(d.date); })
-        .y(function (d) { return y(parseInt(d.deaths)); });
+        .y(function (d) { return y(parseInt(d.deaths)); })
+        .curve(interpolation_type);
 
     var clip = svg.append("defs").append("svg:clipPath")
         .attr("id", "clip")
